@@ -2,9 +2,9 @@
   "schemaVersion": 1,
   "meta": {
     "title": "OP-18 Ticket Radar",
-    "lastChecked": null,
+    "lastChecked": "2026-11-02T03:19:13+00:00",
     "snapshotDate": "2026-11-01",
-    "checker": "Initial research snapshot — no live sync yet",
+    "checker": "Public store pages scanned (12/16 fetched)",
     "timezone": "America/Toronto",
     "source": "Store pages and published event tracker"
   },
@@ -163,7 +163,7 @@
       "status": "sold_out",
       "price": 42.48,
       "url": "https://store.401games.ca/collections/events-by-day-thursday/products/vaughan-events-one-piece-tcg-op-18-the-dominance-of-god-release-event",
-      "statusSource": "Store page",
+      "statusSource": "Shopify ticket product JSON",
       "lastVerified": "2026-11-01",
       "tcgPlus": true
     },
@@ -175,7 +175,7 @@
       "status": "sold_out",
       "price": 42.48,
       "url": "https://store.401games.ca/collections/events-by-day-thursday/products/vaughan-events-one-piece-tcg-op-18-the-dominance-of-god-release-event",
-      "statusSource": "Store page",
+      "statusSource": "Shopify ticket product JSON",
       "lastVerified": "2026-11-01",
       "tcgPlus": true
     },
@@ -187,7 +187,7 @@
       "status": "sold_out",
       "price": 42.48,
       "url": "https://store.401games.ca/products/downtown-events-one-piece-tcg-op-18-the-dominance-of-god-release-event",
-      "statusSource": "Store page",
+      "statusSource": "Shopify ticket product JSON",
       "lastVerified": "2026-11-01",
       "tcgPlus": true
     },
@@ -199,7 +199,7 @@
       "status": "sold_out",
       "price": 42.48,
       "url": "https://store.401games.ca/products/downtown-events-one-piece-tcg-op-18-the-dominance-of-god-release-event",
-      "statusSource": "Store page",
+      "statusSource": "Shopify ticket product JSON",
       "lastVerified": "2026-11-01",
       "tcgPlus": true
     },
@@ -211,7 +211,7 @@
       "status": "sold_out",
       "price": 60,
       "url": "https://facetofacegames.com/products/one-piece-op-18-prerelease-saturday-november-21st-1100-am-toronto-2026",
-      "statusSource": "Store page",
+      "statusSource": "Shopify ticket product JSON",
       "lastVerified": "2026-11-01",
       "tcgPlus": false
     },
@@ -223,7 +223,7 @@
       "status": "sold_out",
       "price": 49.95,
       "url": "https://bananagames.ca/products/one-piece-op-18-release-event",
-      "statusSource": "Store page",
+      "statusSource": "Shopify ticket product JSON",
       "lastVerified": "2026-11-01",
       "tcgPlus": false
     },
@@ -235,7 +235,7 @@
       "status": "sold_out",
       "price": 49.95,
       "url": "https://bananagames.ca/products/one-piece-op-18-release-event",
-      "statusSource": "Store page",
+      "statusSource": "Shopify ticket product JSON",
       "lastVerified": "2026-11-01",
       "tcgPlus": false
     },
@@ -247,7 +247,7 @@
       "status": "sold_out",
       "price": 49.95,
       "url": "https://bananagames.ca/products/one-piece-op-18-release-event",
-      "statusSource": "Store page",
+      "statusSource": "Shopify ticket product JSON",
       "lastVerified": "2026-11-01",
       "tcgPlus": false
     },
@@ -283,7 +283,7 @@
       "status": "sold_out",
       "price": 44.95,
       "url": "https://animealley.ca/products/one-piece-op-18-release-event-sat-november-28th-2026-1-00-pm",
-      "statusSource": "Store page",
+      "statusSource": "Shopify ticket product JSON",
       "lastVerified": "2026-11-01",
       "tcgPlus": false
     },
@@ -295,7 +295,7 @@
       "status": "sold_out",
       "price": 44.95,
       "url": "https://animealley.ca/products/one-piece-op-18-release-event-december-2nd-2026-6-00pm",
-      "statusSource": "Store ticket page; date is December 2",
+      "statusSource": "Shopify ticket product JSON",
       "lastVerified": "2026-11-01",
       "tcgPlus": false
     },
@@ -321,5 +321,86 @@
       "message": "Initial OP-18 event list imported. Ticket availability is a November 1 snapshot, not a live reading."
     }
   ],
-  "checks": []
+  "checks": [
+    {
+      "storeId": "401-vaughan",
+      "ok": true,
+      "message": "Ticket inventory checked from public product JSON"
+    },
+    {
+      "storeId": "401-downtown",
+      "ok": true,
+      "message": "Ticket inventory checked from public product JSON"
+    },
+    {
+      "storeId": "dollys",
+      "ok": true,
+      "message": "Store page fetched; event links examined"
+    },
+    {
+      "storeId": "game-shack",
+      "ok": true,
+      "message": "Store page fetched; event links examined"
+    },
+    {
+      "storeId": "mintink",
+      "ok": true,
+      "message": "Store page fetched; event links examined"
+    },
+    {
+      "storeId": "banana",
+      "ok": true,
+      "message": "Ticket inventory checked from public product JSON"
+    },
+    {
+      "storeId": "hairy",
+      "ok": true,
+      "message": "Store page fetched; event links examined"
+    },
+    {
+      "storeId": "face",
+      "ok": true,
+      "message": "Ticket inventory checked from public product JSON"
+    },
+    {
+      "storeId": "anime",
+      "ok": true,
+      "message": "Ticket inventory checked from public product JSON"
+    },
+    {
+      "storeId": "derpy",
+      "ok": true,
+      "message": "Store page fetched; event links examined"
+    },
+    {
+      "storeId": "sunny",
+      "ok": true,
+      "message": "Store page fetched; event links examined"
+    },
+    {
+      "storeId": "perfect",
+      "ok": false,
+      "message": "No public event page URL configured"
+    },
+    {
+      "storeId": "esper",
+      "ok": false,
+      "message": "No public event page URL configured"
+    },
+    {
+      "storeId": "mad",
+      "ok": false,
+      "message": "No public event page URL configured"
+    },
+    {
+      "storeId": "the6ix",
+      "ok": true,
+      "message": "Store page fetched; event links examined"
+    },
+    {
+      "storeId": "newrealm",
+      "ok": false,
+      "message": "No public event page URL configured"
+    }
+  ]
 }
