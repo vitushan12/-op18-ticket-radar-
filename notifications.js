@@ -11,7 +11,7 @@
   window.OneSignalDeferred.push(async os=>{
    try{
     const scope=new URL('./push/',location.href).pathname;
-    await os.init({appId:config.appId,serviceWorkerPath:scope+'OneSignalSDKWorker.js',serviceWorkerParam:{scope},notifyButton:{enable:false},welcomeNotification:{disable:false,title:'OP18 Radar alerts enabled',message:'You will receive alerts for newly available tickets.',url:new URL('./',location.href).href}});
+    await os.init({appId:config.appId,serviceWorkerPath:scope.slice(1)+'OneSignalSDKWorker.js',serviceWorkerParam:{scope},notifyButton:{enable:false},welcomeNotification:{disable:false,title:'OP18 Radar alerts enabled',message:'You will receive alerts for newly available tickets.',url:new URL('./',location.href).href}});
     if(!os.Notifications.isPushSupported()){say('Push is unavailable here. On iPhone, use the installed Home Screen app.');return;}
     function sync(){const on=os.User.PushSubscription.optedIn;enable.disabled=!!on;disable.hidden=!on;say(on?'Notifications enabled on this device.':Notification.permission==='denied'?'Notifications are blocked. Allow them in your device notification settings, then reopen the app.':'Ready: tap Enable notifications, then Allow.');}
     os.User.PushSubscription.addEventListener('change',sync);os.Notifications.addEventListener('permissionChange',sync);
