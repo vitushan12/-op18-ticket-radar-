@@ -28,21 +28,31 @@ jobs:
       - run: python -m pip install 'requests>=2.31,<3'
       - run: python scripts/test_monitor.py
       - run: python scripts/monitor.py
+      - name: Send ticket push alerts
+        env:
+          ONESIGNAL_APP_ID: ${{ vars.ONESIGNAL_APP_ID }}
+          ONESIGNAL_REST_API_KEY: ${{ secrets.ONESIGNAL_REST_API_KEY }}
+        run: python scripts/send_push.py
       - name: Save updated status
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/status.json
+          if [ -f data/push-state.json ]; then git add data/push-state.json; fi
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh OP-18 radar status'
             git push
           fi
       - uses: actions/configure-pages@v5
       - name: Prepare website
+        env:
+          ONESIGNAL_APP_ID: ${{ vars.ONESIGNAL_APP_ID }}
         run: |
           mkdir _site
           cp index.html app.js styles.css sw.js manifest.webmanifest .nojekyll _site/
-          cp -r icons data _site/
+          cp -r icons data push _site/
+          cp notifications.html notifications.js _site/
+          python -c 'import json,os; open("_site/push-config.json","w").write(json.dumps({"appId":os.environ.get("ONESIGNAL_APP_ID", "")}))'
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
