@@ -3,7 +3,7 @@
   'use strict';
   const STORAGE = 'op18-radar-prefs-v1';
   const seed = window.OP18_SEED;
-  const fallbackPrefs = {favorites:['401-vaughan','401-downtown','dollys','game-shack','mintink'],tickets:[],customStores:[],notes:{},progress:{}};
+  const fallbackPrefs = {favorites:['untouchables','401-vaughan','401-downtown','dollys','game-shack','mintink'],tickets:[],customStores:[],notes:{},progress:{}};
   let prefs = loadPrefs();
   let data = seed;
   let tab = 'dashboard', area='All', eventFilter='All', search='';
@@ -59,6 +59,23 @@
       <div class="actions">${link(e.url||s.url,'Open ticket page',e.status==='available'?'action primary':'action')}<button class="action" data-ticket="${safe(e.id)}">${bought?'✓ Ticket secured':'I got a ticket'}</button></div>
     </article>`;
   }
+  function dropCountdown(){
+    const left=new Date('2026-11-11T13:00:00-05:00').getTime()-Date.now();
+    if(left<=0) return 'Scheduled sale time reached — check official shop';
+    const d=Math.floor(left/86400000), h=Math.floor(left%86400000/3600000), m=Math.floor(left%3600000/60000), s=Math.floor(left%60000/1000);
+    return d+'d '+h+'h '+m+'m '+s+'s until the scheduled ticket drop';
+  }
+  function priorityCard(){
+    return `<article class="card priority-drop"><div class="kicker">★ TOP PRIORITY · UPCOMING TICKET DROP</div>
+      <h2>Untouchables — Mississauga</h2>
+      <p><strong>Wednesday, November 11, 2026 · 1:00 PM EST</strong></p>
+      <p class="helper">OP-18 sealed release events: November 21 and 22 at 1:00 PM · CA$50 each · 32 players per event.</p>
+      <div id="dropCountdown" class="drop-countdown">${safe(dropCountdown())}</div>
+      <p class="helper">Official page currently shows Sold Out ahead of its announced sale. A countdown is not proof that tickets are available. Bandai TCG+ participation requirements should be confirmed with the store.</p>
+      <div class="actions"><a class="action primary" href="https://untouchables.ca/collections/major-events/products/opce-the-dominance-of-god-release-event-ticket" target="_blank" rel="noopener noreferrer">Open ticket purchase page ↗</a><a class="action" href="./untouchables-op18-2026-11-11.ics">Add iPhone Calendar reminders</a></div>
+      <p class="helper">Calendar alerts: 1 hour, 15 minutes, 5 minutes and at the scheduled opening. Import the calendar file to activate them.</p>
+    </article>`;
+  }
   function storeCard(s){
     const ev=allEvents().filter(e=>e.storeId===s.id);
     const fav=prefs.favorites.includes(s.id);
@@ -83,6 +100,7 @@
     return `<section class="hero"><div class="kicker">✧ 4th anniversary release</div><h1>THE DOMINANCE<br>OF GOD</h1><p>Your personal GTA OP-18 event ticket mission control.</p><div class="hero-tag">SET RELEASE <b>20 NOV 2026</b></div></section>
     <div class="subbar"><span><i class="status-dot"></i>${safe(lastChecked())}</span><span>${data.meta.lastChecked?'ONLINE FEED':'STARTER SNAPSHOT'}</span></div>
     ${stats()}
+    ${priorityCard()}
     ${!data.meta.lastChecked?'<div class="notice info"><b>Setup needed for automatic app updates.</b> Your existing ChatGPT hourly ticket alerts are separate and remain active. Host this dashboard and enable its scheduled scanner to see new checks here.</div>':''}
     <div class="sectionhead"><h2>Ticket opportunities</h2><button class="linkbutton" data-go="events">View all →</button></div>
     ${open.length?open.slice(0,3).map(eventCard).join(''):'<div class="notice">No confirmed purchasable OP-18 tickets in the latest saved data. Sold-out listings may change; use the direct store links to check.</div>'}
@@ -172,6 +190,7 @@
     prefs.customStores.push({id,name,city,url,eventsUrl:url,notes:'Manual entry — not included in automatic website scanner',priority:false});
     prefs.favorites.push(id); save();$('storeForm').reset();$('storeDialog').close();tab='stores';render();notify('Custom shop added');
   });
+  setInterval(()=>{const x=$('dropCountdown'); if(x)x.textContent=dropCountdown();},1000);
   render();refresh(true);
   document.addEventListener('visibilitychange',()=>{if(!document.hidden) refresh(true);});
   setInterval(()=>{if(!document.hidden)refresh(true)},300000);
