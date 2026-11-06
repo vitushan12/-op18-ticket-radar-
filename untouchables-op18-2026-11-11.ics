@@ -1,0 +1,37 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//OP18 Ticket Radar//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:untouchables-op18-tickets-20261111-1300@op18-radar
+DTSTAMP:20261106T013200Z
+DTSTART:20261111T180000Z
+DTEND:20261111T181500Z
+SUMMARY:OP-18 Tickets GO LIVE - Untouchables Mississauga
+DESCRIPTION:OP-18 The Dominance of God release event tickets ($50 CAD) are scheduled to go on sale at 1:00 PM EST. Choose Nov 21 or Nov 22 (1:00 PM events). Tickets not guaranteed. Official ticket link: https://untouchables.ca/collections/major-events/products/opce-the-dominance-of-god-release-event-ticket
+LOCATION:Online - Untouchables Sports Cards & Gaming
+URL:https://untouchables.ca/collections/major-events/products/opce-the-dominance-of-god-release-event-ticket
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Untouchables OP-18 tickets open in 1 hour
+TRIGGER:-PT1H
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Untouchables OP-18 tickets open in 15 minutes
+TRIGGER:-PT15M
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Untouchables OP-18 tickets open in 5 minutes
+TRIGGER:-PT5M
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Untouchables OP-18 ticket drop starts now
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+END:VCALENDAR
