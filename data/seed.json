@@ -10,6 +10,15 @@
   },
   "stores": [
     {
+      "id": "untouchables",
+      "name": "Untouchables Sports Cards & Gaming",
+      "city": "Mississauga",
+      "url": "https://untouchables.ca/collections/major-events/products/opce-the-dominance-of-god-release-event-ticket",
+      "eventsUrl": "https://untouchables.ca/collections/major-events/products/opce-the-dominance-of-god-release-event-ticket",
+      "notes": "TOP PRIORITY • OP18 $50 release ticket drop Wednesday Nov 11 at 1:00 PM EST • event dates Nov 21 / 22, 1 PM • TCG+ requirement not confirmed",
+      "priority": true
+    },
+    {
       "id": "401-vaughan",
       "name": "401 Games Vaughan",
       "city": "Vaughan",
@@ -155,6 +164,30 @@
     }
   ],
   "events": [
+    {
+      "id": "untouchables-2026-11-21-1300",
+      "storeId": "untouchables",
+      "date": "2026-11-21",
+      "time": "13:00",
+      "status": "check_store",
+      "price": 50,
+      "url": "https://untouchables.ca/collections/major-events/products/opce-the-dominance-of-god-release-event-ticket",
+      "statusSource": "Official sale announcement: Nov 11, 2026 at 1:00 PM EST (not yet on sale)",
+      "lastVerified": "2026-11-05",
+      "tcgPlus": false
+    },
+    {
+      "id": "untouchables-2026-11-22-1300",
+      "storeId": "untouchables",
+      "date": "2026-11-22",
+      "time": "13:00",
+      "status": "check_store",
+      "price": 50,
+      "url": "https://untouchables.ca/collections/major-events/products/opce-the-dominance-of-god-release-event-ticket",
+      "statusSource": "Official sale announcement: Nov 11, 2026 at 1:00 PM EST (not yet on sale)",
+      "lastVerified": "2026-11-05",
+      "tcgPlus": false
+    },
     {
       "id": "401-vaughan-21-1300",
       "storeId": "401-vaughan",
