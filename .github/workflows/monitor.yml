@@ -41,7 +41,18 @@ jobs:
           if [ -f data/push-state.json ]; then git add data/push-state.json; fi
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh OP-18 radar status'
-            git push
+            if ! git push; then
+              echo "::warning::Another edit landed while the scanner was running. Retrying safely."
+              git fetch origin main
+              if git rebase origin/main; then
+                if ! git push; then
+                  echo "::warning::Status commit could not be pushed after retry; website deployment will still proceed."
+                fi
+              else
+                git rebase --abort
+                echo "::warning::Status conflicts with another update; preserving the newer remote version. Website deployment will still proceed."
+              fi
+            fi
           fi
       - uses: actions/configure-pages@v5
       - name: Prepare website
