@@ -49,7 +49,7 @@ jobs:
           ONESIGNAL_APP_ID: ${{ vars.ONESIGNAL_APP_ID }}
         run: |
           mkdir _site
-          cp index.html app.js styles.css sw.js manifest.webmanifest .nojekyll _site/
+          cp index.html app.js styles.css sw.js manifest.webmanifest .nojekyll untouchables-op18-2026-11-11.ics _site/
           cp -r icons data push _site/
           cp notifications.html notifications.js _site/
           python -c 'import json,os; open("_site/push-config.json","w").write(json.dumps({"appId":os.environ.get("ONESIGNAL_APP_ID", "")}))'
