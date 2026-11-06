@@ -2,9 +2,9 @@
   "schemaVersion": 1,
   "meta": {
     "title": "OP-18 Ticket Radar",
-    "lastChecked": "2026-11-06T01:41:23+00:00",
+    "lastChecked": "2026-11-06T01:43:18+00:00",
     "snapshotDate": "2026-11-01",
-    "checker": "Public store pages scanned (12/16 fetched)",
+    "checker": "Public store pages scanned (13/17 fetched)",
     "timezone": "America/Toronto",
     "source": "Store pages and published event tracker"
   },
@@ -169,10 +169,10 @@
       "storeId": "untouchables",
       "date": "2026-11-21",
       "time": "13:00",
-      "status": "check_store",
+      "status": "sold_out",
       "price": 50,
       "url": "https://untouchables.ca/collections/major-events/products/opce-the-dominance-of-god-release-event-ticket",
-      "statusSource": "Official sale announcement: Nov 11, 2026 at 1:00 PM EST (not yet on sale)",
+      "statusSource": "Shopify ticket product JSON",
       "lastVerified": "2026-11-05",
       "tcgPlus": false
     },
@@ -181,10 +181,10 @@
       "storeId": "untouchables",
       "date": "2026-11-22",
       "time": "13:00",
-      "status": "check_store",
+      "status": "sold_out",
       "price": 50,
       "url": "https://untouchables.ca/collections/major-events/products/opce-the-dominance-of-god-release-event-ticket",
-      "statusSource": "Official sale announcement: Nov 11, 2026 at 1:00 PM EST (not yet on sale)",
+      "statusSource": "Shopify ticket product JSON",
       "lastVerified": "2026-11-05",
       "tcgPlus": false
     },
@@ -348,6 +348,18 @@
   "discoveries": [],
   "activity": [
     {
+      "id": "d1a1882301e46f",
+      "type": "sold_out",
+      "message": "Untouchables Sports Cards & Gaming: 2026-11-22 13:00 changed from check_store to sold_out. Verify at https://untouchables.ca/collections/major-events/products/opce-the-dominance-of-god-release-event-ticket",
+      "timestamp": "2026-11-06T01:43:18+00:00"
+    },
+    {
+      "id": "ef96fd8b436bfd",
+      "type": "sold_out",
+      "message": "Untouchables Sports Cards & Gaming: 2026-11-21 13:00 changed from check_store to sold_out. Verify at https://untouchables.ca/collections/major-events/products/opce-the-dominance-of-god-release-event-ticket",
+      "timestamp": "2026-11-06T01:43:18+00:00"
+    },
+    {
       "id": "untouchables-priority-20261105",
       "type": "info",
       "timestamp": "2026-11-06T01:30:00Z",
@@ -361,6 +373,11 @@
     }
   ],
   "checks": [
+    {
+      "storeId": "untouchables",
+      "ok": true,
+      "message": "Ticket inventory checked from public product JSON"
+    },
     {
       "storeId": "401-vaughan",
       "ok": true,
