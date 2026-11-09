@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "meta": {
     "title": "OP-18 Ticket Radar",
-    "lastChecked": "2026-11-09T06:13:08+00:00",
+    "lastChecked": "2026-11-09T17:25:35+00:00",
     "snapshotDate": "2026-11-01",
     "checker": "Public store pages scanned (13/17 fetched)",
     "timezone": "America/Toronto",
@@ -241,7 +241,7 @@
       "storeId": "face",
       "date": "2026-11-21",
       "time": "11:00",
-      "status": "available",
+      "status": "sold_out",
       "price": 60,
       "url": "https://facetofacegames.com/products/one-piece-op-18-prerelease-saturday-november-21st-1100-am-toronto-2026",
       "statusSource": "Shopify ticket product JSON",
@@ -347,6 +347,12 @@
   ],
   "discoveries": [],
   "activity": [
+    {
+      "id": "68a0e27041861b",
+      "type": "sold_out",
+      "message": "Face to Face Games Toronto: 2026-11-21 11:00 changed from available to sold_out. Verify at https://facetofacegames.com/products/one-piece-op-18-prerelease-saturday-november-21st-1100-am-toronto-2026",
+      "timestamp": "2026-11-09T17:25:35+00:00"
+    },
     {
       "id": "bc11ae8c8cce11",
       "type": "available",
