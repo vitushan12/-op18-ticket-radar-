@@ -15,8 +15,8 @@
     "priceBasis": "Card price before shipping and tax; only confirmed in-stock variants count."
   },
   "meta": {
-    "lastChecked": "2026-11-14T12:58:06+00:00",
-    "successfulStores": 6,
+    "lastChecked": "2026-11-14T13:01:20+00:00",
+    "successfulStores": 7,
     "totalStores": 8,
     "matchingOffers": 0,
     "intervalMinutes": 30,
@@ -28,91 +28,227 @@
       "id": "enter-the-battlefield",
       "name": "Enter The Battlefield",
       "url": "https://enterthebattlefield.ca",
-      "checkedAt": "2026-11-14T12:58:06+00:00",
-      "status": "error",
-      "message": "A product could not be verified; no current offer verified",
-      "offers": [],
-      "requests": 4
+      "checkedAt": "2026-11-14T13:01:20+00:00",
+      "status": "ok",
+      "message": "CAD and exact card variants verified (4 variant(s)); partial checks: /products/nico-robin-010-alternate-art-eb05-010-extra-booster-one-piece-heroines-edition-vol-2-foil.js (InvalidPrice)",
+      "offers": [
+        "838c8ebd2c12b419e101",
+        "90b0e3fbd6b543e44cee",
+        "0d77887e58bb5e003da7",
+        "63edbddb66bcf69ccf93"
+      ],
+      "diagnostics": [
+        {
+          "stage": "variant",
+          "path": "/products/nico-robin-010-alternate-art-eb05-010-extra-booster-one-piece-heroines-edition-vol-2-foil.js",
+          "variantId": "48123606859947",
+          "errorType": "InvalidPrice",
+          "message": "Variant price is not verified positive integer cents"
+        }
+      ],
+      "requests": 3
     },
     {
       "id": "401-games",
       "name": "401 Games",
       "url": "https://store.401games.ca",
-      "checkedAt": "2026-11-14T12:58:06+00:00",
+      "checkedAt": "2026-11-14T13:01:20+00:00",
       "status": "ok",
-      "message": "CAD and exact card variants verified (2 variant(s))",
+      "message": "CAD and exact card variants verified (1 variant(s))",
       "offers": [
-        "2642adbb154008912ba2",
         "17813e819194491a3e7e"
       ],
-      "requests": 4
+      "diagnostics": [],
+      "requests": 3
     },
     {
       "id": "face-to-face",
       "name": "Face to Face Games",
       "url": "https://facetofacegames.com",
-      "checkedAt": "2026-11-14T12:58:06+00:00",
+      "checkedAt": "2026-11-14T13:01:20+00:00",
       "status": "no_match",
       "message": "No exact alternate-art EB05-010 listing found in bounded search",
       "offers": [],
+      "diagnostics": [],
       "requests": 2
     },
     {
       "id": "hobbiesville",
       "name": "Hobbiesville",
       "url": "https://hobbiesville.com",
-      "checkedAt": "2026-11-14T12:58:06+00:00",
+      "checkedAt": "2026-11-14T13:01:20+00:00",
       "status": "no_match",
       "message": "No exact alternate-art EB05-010 listing found in bounded search",
       "offers": [],
+      "diagnostics": [],
       "requests": 2
     },
     {
       "id": "kanzen-games",
       "name": "Kanzen Games",
       "url": "https://kanzengames.com",
-      "checkedAt": "2026-11-14T12:58:06+00:00",
-      "status": "ok",
-      "message": "CAD and exact card variants verified (3 variant(s))",
-      "offers": [
-        "6fee8ccbff872151bec8",
-        "f5821f5166f985347db9",
-        "90fa4fcda1801f458263"
-      ],
-      "requests": 3
+      "checkedAt": "2026-11-14T13:01:20+00:00",
+      "status": "no_match",
+      "message": "No exact alternate-art EB05-010 listing found in bounded search",
+      "offers": [],
+      "diagnostics": [],
+      "requests": 2
     },
     {
       "id": "deck-out-gaming",
       "name": "Deck Out Gaming",
       "url": "https://deckoutgaming.ca",
-      "checkedAt": "2026-11-14T12:58:06+00:00",
+      "checkedAt": "2026-11-14T13:01:20+00:00",
       "status": "no_match",
       "message": "No exact alternate-art EB05-010 listing found in bounded search",
       "offers": [],
+      "diagnostics": [],
       "requests": 2
     },
     {
       "id": "hairy-tarantula",
       "name": "Hairy Tarantula",
       "url": "https://hairyt.com",
-      "checkedAt": "2026-11-14T12:58:06+00:00",
+      "checkedAt": "2026-11-14T13:01:20+00:00",
       "status": "no_match",
       "message": "No exact alternate-art EB05-010 listing found in bounded search",
       "offers": [],
+      "diagnostics": [],
       "requests": 2
     },
     {
       "id": "dollys",
       "name": "Dolly's",
       "url": "https://dollys.ca",
-      "checkedAt": "2026-11-14T12:58:06+00:00",
+      "checkedAt": "2026-11-14T13:01:20+00:00",
       "status": "error",
       "message": "Public store check unavailable (HTTP 404); price/stock unverified",
       "offers": [],
+      "diagnostics": [
+        {
+          "stage": "currency",
+          "path": "/cart.js",
+          "errorType": "HTTPError",
+          "httpStatus": 404,
+          "message": "Public endpoint could not be verified"
+        }
+      ],
       "requests": 1
     }
   ],
   "offers": [
+    {
+      "id": "838c8ebd2c12b419e101",
+      "storeId": "enter-the-battlefield",
+      "title": "Nico Robin (010) (Alternate Art) (EB05-010) - Extra Booster: One Piece Heroines Edition Vol. 2 Foil",
+      "variant": "Near Mint",
+      "condition": "Near Mint",
+      "url": "https://enterthebattlefield.ca/products/nico-robin-010-alternate-art-eb05-010-extra-booster-one-piece-heroines-edition-vol-2-foil?variant=48123606728875",
+      "currency": "CAD",
+      "price": 63.5,
+      "inStock": true,
+      "firstSeen": "2026-11-14T13:01:20+00:00",
+      "lastSeen": "2026-11-14T13:01:20+00:00",
+      "stale": false,
+      "image": "//cdn.shopify.com/s/files/1/0496/0098/7297/files/722644_2f837d62-ca7d-4ee1-8029-b2f29584e61d.jpg?v=1793846009",
+      "eligible": true,
+      "belowThreshold": false,
+      "previousPrice": null,
+      "minPrice": 63.5,
+      "changed": false,
+      "dropAmount": null,
+      "history": [
+        {
+          "checkedAt": "2026-11-14T13:01:20+00:00",
+          "price": 63.5,
+          "inStock": true
+        }
+      ]
+    },
+    {
+      "id": "63edbddb66bcf69ccf93",
+      "storeId": "enter-the-battlefield",
+      "title": "Nico Robin (010) (Alternate Art) (EB05-010) - Extra Booster: One Piece Heroines Edition Vol. 2 Foil",
+      "variant": "Heavily Played",
+      "condition": "Heavily Played",
+      "url": "https://enterthebattlefield.ca/products/nico-robin-010-alternate-art-eb05-010-extra-booster-one-piece-heroines-edition-vol-2-foil?variant=48123606827179",
+      "currency": "CAD",
+      "price": 12.7,
+      "inStock": false,
+      "firstSeen": "2026-11-14T13:01:20+00:00",
+      "lastSeen": "2026-11-14T13:01:20+00:00",
+      "stale": false,
+      "image": "//cdn.shopify.com/s/files/1/0496/0098/7297/files/722644_2f837d62-ca7d-4ee1-8029-b2f29584e61d.jpg?v=1793846009",
+      "eligible": false,
+      "belowThreshold": false,
+      "previousPrice": null,
+      "minPrice": 12.7,
+      "changed": false,
+      "dropAmount": null,
+      "history": [
+        {
+          "checkedAt": "2026-11-14T13:01:20+00:00",
+          "price": 12.7,
+          "inStock": false
+        }
+      ]
+    },
+    {
+      "id": "0d77887e58bb5e003da7",
+      "storeId": "enter-the-battlefield",
+      "title": "Nico Robin (010) (Alternate Art) (EB05-010) - Extra Booster: One Piece Heroines Edition Vol. 2 Foil",
+      "variant": "Moderately Played",
+      "condition": "Moderately Played",
+      "url": "https://enterthebattlefield.ca/products/nico-robin-010-alternate-art-eb05-010-extra-booster-one-piece-heroines-edition-vol-2-foil?variant=48123606794411",
+      "currency": "CAD",
+      "price": 31.75,
+      "inStock": false,
+      "firstSeen": "2026-11-14T13:01:20+00:00",
+      "lastSeen": "2026-11-14T13:01:20+00:00",
+      "stale": false,
+      "image": "//cdn.shopify.com/s/files/1/0496/0098/7297/files/722644_2f837d62-ca7d-4ee1-8029-b2f29584e61d.jpg?v=1793846009",
+      "eligible": false,
+      "belowThreshold": false,
+      "previousPrice": null,
+      "minPrice": 31.75,
+      "changed": false,
+      "dropAmount": null,
+      "history": [
+        {
+          "checkedAt": "2026-11-14T13:01:20+00:00",
+          "price": 31.75,
+          "inStock": false
+        }
+      ]
+    },
+    {
+      "id": "90b0e3fbd6b543e44cee",
+      "storeId": "enter-the-battlefield",
+      "title": "Nico Robin (010) (Alternate Art) (EB05-010) - Extra Booster: One Piece Heroines Edition Vol. 2 Foil",
+      "variant": "Lightly Played",
+      "condition": "Lightly Played",
+      "url": "https://enterthebattlefield.ca/products/nico-robin-010-alternate-art-eb05-010-extra-booster-one-piece-heroines-edition-vol-2-foil?variant=48123606761643",
+      "currency": "CAD",
+      "price": 44.45,
+      "inStock": false,
+      "firstSeen": "2026-11-14T13:01:20+00:00",
+      "lastSeen": "2026-11-14T13:01:20+00:00",
+      "stale": false,
+      "image": "//cdn.shopify.com/s/files/1/0496/0098/7297/files/722644_2f837d62-ca7d-4ee1-8029-b2f29584e61d.jpg?v=1793846009",
+      "eligible": false,
+      "belowThreshold": false,
+      "previousPrice": null,
+      "minPrice": 44.45,
+      "changed": false,
+      "dropAmount": null,
+      "history": [
+        {
+          "checkedAt": "2026-11-14T13:01:20+00:00",
+          "price": 44.45,
+          "inStock": false
+        }
+      ]
+    },
     {
       "id": "17813e819194491a3e7e",
       "storeId": "401-games",
@@ -124,12 +260,12 @@
       "price": 65.0,
       "inStock": false,
       "firstSeen": "2026-11-14T12:58:06+00:00",
-      "lastSeen": "2026-11-14T12:58:06+00:00",
+      "lastSeen": "2026-11-14T13:01:20+00:00",
       "stale": false,
       "image": "//cdn.shopify.com/s/files/1/1704/1809/files/722644_in_1000x1000_b3ad6135-ce0d-49f7-be32-3942899747b0.jpg?v=1794334349",
       "eligible": false,
       "belowThreshold": false,
-      "previousPrice": null,
+      "previousPrice": 65.0,
       "minPrice": 65.0,
       "changed": false,
       "dropAmount": null,
@@ -138,117 +274,10 @@
           "checkedAt": "2026-11-14T12:58:06+00:00",
           "price": 65.0,
           "inStock": false
-        }
-      ]
-    },
-    {
-      "id": "90fa4fcda1801f458263",
-      "storeId": "kanzen-games",
-      "title": "Nico Robin (010) (Super Leader Alternate Art) (EB05-010) (Foil) [Extra Booster: One Piece Heroines Edition Vol. 2] (EB05)",
-      "variant": "Moderately Played - Foil",
-      "condition": "Moderately Played - Foil",
-      "url": "https://kanzengames.com/products/nico-robin-010-super-leader-alternate-art-eb05-010-foil-extra-booster-one-piece-heroines-edition-vol-2-eb05?variant=68003182313687",
-      "currency": "CAD",
-      "price": 1788.2,
-      "inStock": false,
-      "firstSeen": "2026-11-14T12:58:06+00:00",
-      "lastSeen": "2026-11-14T12:58:06+00:00",
-      "stale": false,
-      "image": "//cdn.shopify.com/s/files/1/0483/6543/7089/files/726218.jpg?v=1794001883",
-      "eligible": false,
-      "belowThreshold": false,
-      "previousPrice": null,
-      "minPrice": 1788.2,
-      "changed": false,
-      "dropAmount": null,
-      "history": [
+        },
         {
-          "checkedAt": "2026-11-14T12:58:06+00:00",
-          "price": 1788.2,
-          "inStock": false
-        }
-      ]
-    },
-    {
-      "id": "2642adbb154008912ba2",
-      "storeId": "401-games",
-      "title": "Nico Robin (010) (Super Leader Alternate Art) - EB05-010 - Leader",
-      "variant": "NM",
-      "condition": "NM",
-      "url": "https://store.401games.ca/products/nico-robin-010-super-leader-alternate-art-eb05-010-leader?variant=67990807838907",
-      "currency": "CAD",
-      "price": 1850.0,
-      "inStock": false,
-      "firstSeen": "2026-11-14T12:58:06+00:00",
-      "lastSeen": "2026-11-14T12:58:06+00:00",
-      "stale": false,
-      "image": "//cdn.shopify.com/s/files/1/1704/1809/files/15459420078267.jpg?v=1794334356",
-      "eligible": false,
-      "belowThreshold": false,
-      "previousPrice": null,
-      "minPrice": 1850.0,
-      "changed": false,
-      "dropAmount": null,
-      "history": [
-        {
-          "checkedAt": "2026-11-14T12:58:06+00:00",
-          "price": 1850.0,
-          "inStock": false
-        }
-      ]
-    },
-    {
-      "id": "f5821f5166f985347db9",
-      "storeId": "kanzen-games",
-      "title": "Nico Robin (010) (Super Leader Alternate Art) (EB05-010) (Foil) [Extra Booster: One Piece Heroines Edition Vol. 2] (EB05)",
-      "variant": "Lightly Played - Foil",
-      "condition": "Lightly Played - Foil",
-      "url": "https://kanzengames.com/products/nico-robin-010-super-leader-alternate-art-eb05-010-foil-extra-booster-one-piece-heroines-edition-vol-2-eb05?variant=68003182280919",
-      "currency": "CAD",
-      "price": 2171.3,
-      "inStock": false,
-      "firstSeen": "2026-11-14T12:58:06+00:00",
-      "lastSeen": "2026-11-14T12:58:06+00:00",
-      "stale": false,
-      "image": "//cdn.shopify.com/s/files/1/0483/6543/7089/files/726218.jpg?v=1794001883",
-      "eligible": false,
-      "belowThreshold": false,
-      "previousPrice": null,
-      "minPrice": 2171.3,
-      "changed": false,
-      "dropAmount": null,
-      "history": [
-        {
-          "checkedAt": "2026-11-14T12:58:06+00:00",
-          "price": 2171.3,
-          "inStock": false
-        }
-      ]
-    },
-    {
-      "id": "6fee8ccbff872151bec8",
-      "storeId": "kanzen-games",
-      "title": "Nico Robin (010) (Super Leader Alternate Art) (EB05-010) (Foil) [Extra Booster: One Piece Heroines Edition Vol. 2] (EB05)",
-      "variant": "Near Mint - Foil",
-      "condition": "Near Mint - Foil",
-      "url": "https://kanzengames.com/products/nico-robin-010-super-leader-alternate-art-eb05-010-foil-extra-booster-one-piece-heroines-edition-vol-2-eb05?variant=68003182248151",
-      "currency": "CAD",
-      "price": 2554.5,
-      "inStock": false,
-      "firstSeen": "2026-11-14T12:58:06+00:00",
-      "lastSeen": "2026-11-14T12:58:06+00:00",
-      "stale": false,
-      "image": "//cdn.shopify.com/s/files/1/0483/6543/7089/files/726218.jpg?v=1794001883",
-      "eligible": false,
-      "belowThreshold": false,
-      "previousPrice": null,
-      "minPrice": 2554.5,
-      "changed": false,
-      "dropAmount": null,
-      "history": [
-        {
-          "checkedAt": "2026-11-14T12:58:06+00:00",
-          "price": 2554.5,
+          "checkedAt": "2026-11-14T13:01:20+00:00",
+          "price": 65.0,
           "inStock": false
         }
       ]
