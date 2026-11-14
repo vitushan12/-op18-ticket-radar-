@@ -216,11 +216,6 @@ def failure_diagnostic(error, stage, url):
     return diagnostic
 
 
-def diagnostic_label(diagnostic):
-    reason = "HTTP " + str(diagnostic["httpStatus"]) if "httpStatus" in diagnostic else diagnostic["errorType"]
-    return diagnostic["path"] + " (" + reason + ")"
-
-
 def update_offer(current, previous, threshold, now):
     result = deepcopy(current)
     result["eligible"] = current["inStock"] and not current["stale"]
@@ -284,10 +279,10 @@ def check_store(store, settings, now, client_factory=StoreClient):
         offers = list({offer["id"]: offer for offer in offers}.values())
         summary["offers"] = [offer["id"] for offer in offers]
         if offers:
-            summary.update(status="ok", message=f"CAD and exact card variants verified ({len(offers)} variant(s))" + ("; partial checks: " + "; ".join(dict.fromkeys(map(diagnostic_label, diagnostics))) if diagnostics else ""))
+            summary.update(status="ok", message=f"CAD and exact card variants verified ({len(offers)} variant(s))" + (f"; {len(diagnostics)} other listing/variant check(s) could not be verified" if diagnostics else ""))
         elif diagnostics:
             blocked = any(d.get("httpStatus") in (401, 403, 429) for d in diagnostics)
-            summary.update(status="blocked" if blocked else "error", message="; ".join(dict.fromkeys(map(diagnostic_label, diagnostics))) + "; no current offer verified")
+            summary.update(status="blocked" if blocked else "error", message="Some store listings could not be checked; no current price or stock verified")
         else:
             summary.update(status="no_match", message="No exact alternate-art EB05-010 listing found in bounded search")
     except requests.HTTPError as error:
