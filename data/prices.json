@@ -15,7 +15,7 @@
     "priceBasis": "Card price before shipping and tax; only confirmed in-stock variants count."
   },
   "meta": {
-    "lastChecked": "2026-11-14T13:01:20+00:00",
+    "lastChecked": "2026-11-14T13:04:29+00:00",
     "successfulStores": 7,
     "totalStores": 8,
     "matchingOffers": 0,
@@ -28,9 +28,9 @@
       "id": "enter-the-battlefield",
       "name": "Enter The Battlefield",
       "url": "https://enterthebattlefield.ca",
-      "checkedAt": "2026-11-14T13:01:20+00:00",
+      "checkedAt": "2026-11-14T13:04:29+00:00",
       "status": "ok",
-      "message": "CAD and exact card variants verified (4 variant(s)); partial checks: /products/nico-robin-010-alternate-art-eb05-010-extra-booster-one-piece-heroines-edition-vol-2-foil.js (InvalidPrice)",
+      "message": "CAD and exact card variants verified (4 variant(s)); 1 other listing/variant check(s) could not be verified",
       "offers": [
         "838c8ebd2c12b419e101",
         "90b0e3fbd6b543e44cee",
@@ -52,7 +52,7 @@
       "id": "401-games",
       "name": "401 Games",
       "url": "https://store.401games.ca",
-      "checkedAt": "2026-11-14T13:01:20+00:00",
+      "checkedAt": "2026-11-14T13:04:29+00:00",
       "status": "ok",
       "message": "CAD and exact card variants verified (1 variant(s))",
       "offers": [
@@ -65,7 +65,7 @@
       "id": "face-to-face",
       "name": "Face to Face Games",
       "url": "https://facetofacegames.com",
-      "checkedAt": "2026-11-14T13:01:20+00:00",
+      "checkedAt": "2026-11-14T13:04:29+00:00",
       "status": "no_match",
       "message": "No exact alternate-art EB05-010 listing found in bounded search",
       "offers": [],
@@ -76,7 +76,7 @@
       "id": "hobbiesville",
       "name": "Hobbiesville",
       "url": "https://hobbiesville.com",
-      "checkedAt": "2026-11-14T13:01:20+00:00",
+      "checkedAt": "2026-11-14T13:04:29+00:00",
       "status": "no_match",
       "message": "No exact alternate-art EB05-010 listing found in bounded search",
       "offers": [],
@@ -87,7 +87,7 @@
       "id": "kanzen-games",
       "name": "Kanzen Games",
       "url": "https://kanzengames.com",
-      "checkedAt": "2026-11-14T13:01:20+00:00",
+      "checkedAt": "2026-11-14T13:04:29+00:00",
       "status": "no_match",
       "message": "No exact alternate-art EB05-010 listing found in bounded search",
       "offers": [],
@@ -98,7 +98,7 @@
       "id": "deck-out-gaming",
       "name": "Deck Out Gaming",
       "url": "https://deckoutgaming.ca",
-      "checkedAt": "2026-11-14T13:01:20+00:00",
+      "checkedAt": "2026-11-14T13:04:29+00:00",
       "status": "no_match",
       "message": "No exact alternate-art EB05-010 listing found in bounded search",
       "offers": [],
@@ -109,7 +109,7 @@
       "id": "hairy-tarantula",
       "name": "Hairy Tarantula",
       "url": "https://hairyt.com",
-      "checkedAt": "2026-11-14T13:01:20+00:00",
+      "checkedAt": "2026-11-14T13:04:29+00:00",
       "status": "no_match",
       "message": "No exact alternate-art EB05-010 listing found in bounded search",
       "offers": [],
@@ -120,7 +120,7 @@
       "id": "dollys",
       "name": "Dolly's",
       "url": "https://dollys.ca",
-      "checkedAt": "2026-11-14T13:01:20+00:00",
+      "checkedAt": "2026-11-14T13:04:29+00:00",
       "status": "error",
       "message": "Public store check unavailable (HTTP 404); price/stock unverified",
       "offers": [],
@@ -148,18 +148,23 @@
       "price": 63.5,
       "inStock": true,
       "firstSeen": "2026-11-14T13:01:20+00:00",
-      "lastSeen": "2026-11-14T13:01:20+00:00",
+      "lastSeen": "2026-11-14T13:04:29+00:00",
       "stale": false,
       "image": "//cdn.shopify.com/s/files/1/0496/0098/7297/files/722644_2f837d62-ca7d-4ee1-8029-b2f29584e61d.jpg?v=1793846009",
       "eligible": true,
       "belowThreshold": false,
-      "previousPrice": null,
+      "previousPrice": 63.5,
       "minPrice": 63.5,
       "changed": false,
       "dropAmount": null,
       "history": [
         {
           "checkedAt": "2026-11-14T13:01:20+00:00",
+          "price": 63.5,
+          "inStock": true
+        },
+        {
+          "checkedAt": "2026-11-14T13:04:29+00:00",
           "price": 63.5,
           "inStock": true
         }
@@ -176,18 +181,23 @@
       "price": 12.7,
       "inStock": false,
       "firstSeen": "2026-11-14T13:01:20+00:00",
-      "lastSeen": "2026-11-14T13:01:20+00:00",
+      "lastSeen": "2026-11-14T13:04:29+00:00",
       "stale": false,
       "image": "//cdn.shopify.com/s/files/1/0496/0098/7297/files/722644_2f837d62-ca7d-4ee1-8029-b2f29584e61d.jpg?v=1793846009",
       "eligible": false,
       "belowThreshold": false,
-      "previousPrice": null,
+      "previousPrice": 12.7,
       "minPrice": 12.7,
       "changed": false,
       "dropAmount": null,
       "history": [
         {
           "checkedAt": "2026-11-14T13:01:20+00:00",
+          "price": 12.7,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-14T13:04:29+00:00",
           "price": 12.7,
           "inStock": false
         }
@@ -204,18 +214,23 @@
       "price": 31.75,
       "inStock": false,
       "firstSeen": "2026-11-14T13:01:20+00:00",
-      "lastSeen": "2026-11-14T13:01:20+00:00",
+      "lastSeen": "2026-11-14T13:04:29+00:00",
       "stale": false,
       "image": "//cdn.shopify.com/s/files/1/0496/0098/7297/files/722644_2f837d62-ca7d-4ee1-8029-b2f29584e61d.jpg?v=1793846009",
       "eligible": false,
       "belowThreshold": false,
-      "previousPrice": null,
+      "previousPrice": 31.75,
       "minPrice": 31.75,
       "changed": false,
       "dropAmount": null,
       "history": [
         {
           "checkedAt": "2026-11-14T13:01:20+00:00",
+          "price": 31.75,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-14T13:04:29+00:00",
           "price": 31.75,
           "inStock": false
         }
@@ -232,18 +247,23 @@
       "price": 44.45,
       "inStock": false,
       "firstSeen": "2026-11-14T13:01:20+00:00",
-      "lastSeen": "2026-11-14T13:01:20+00:00",
+      "lastSeen": "2026-11-14T13:04:29+00:00",
       "stale": false,
       "image": "//cdn.shopify.com/s/files/1/0496/0098/7297/files/722644_2f837d62-ca7d-4ee1-8029-b2f29584e61d.jpg?v=1793846009",
       "eligible": false,
       "belowThreshold": false,
-      "previousPrice": null,
+      "previousPrice": 44.45,
       "minPrice": 44.45,
       "changed": false,
       "dropAmount": null,
       "history": [
         {
           "checkedAt": "2026-11-14T13:01:20+00:00",
+          "price": 44.45,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-14T13:04:29+00:00",
           "price": 44.45,
           "inStock": false
         }
@@ -260,7 +280,7 @@
       "price": 65.0,
       "inStock": false,
       "firstSeen": "2026-11-14T12:58:06+00:00",
-      "lastSeen": "2026-11-14T13:01:20+00:00",
+      "lastSeen": "2026-11-14T13:04:29+00:00",
       "stale": false,
       "image": "//cdn.shopify.com/s/files/1/1704/1809/files/722644_in_1000x1000_b3ad6135-ce0d-49f7-be32-3942899747b0.jpg?v=1794334349",
       "eligible": false,
@@ -277,6 +297,11 @@
         },
         {
           "checkedAt": "2026-11-14T13:01:20+00:00",
+          "price": 65.0,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-14T13:04:29+00:00",
           "price": 65.0,
           "inStock": false
         }
