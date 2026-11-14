@@ -1,200 +1,149 @@
-/* OP-18 Ticket Radar: device preferences remain local; status data is a published feed. */
+/* Public price observations only. Scheduled checks run on GitHub, not on this device. */
 (() => {
   'use strict';
-  const STORAGE = 'op18-radar-prefs-v1';
-  const seed = window.OP18_SEED;
-  const fallbackPrefs = {favorites:['untouchables','401-vaughan','401-downtown','dollys','game-shack','mintink'],tickets:[],customStores:[],notes:{},progress:{}};
-  let prefs = loadPrefs();
-  let data = seed;
-  let tab = 'dashboard', area='All', eventFilter='All', search='';
-  let lastFeedError = null;
-  let toastTimer = null;
-  const $ = id => document.getElementById(id);
-  const safe = v => String(v ?? '').replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-  const safeUrl = s => { try { const u = new URL(s); return ['https:','http:'].includes(u.protocol) ? u.href : ''; } catch { return ''; } };
-  const link = (url, label, className='action') => safeUrl(url) ? `<a href="${safe(safeUrl(url))}" target="_blank" rel="noopener noreferrer" class="${className}">${safe(label)} ↗</a>` : '';
-  const money = v => v == null ? '' : `CA$${Number(v).toFixed(2)}`;
-  const allStores = () => [...data.stores, ...prefs.customStores];
-  const findStore = id => allStores().find(s=>s.id===id) || {name:'Unknown store', city:'GTA'};
-  const allEvents = () => [...data.events].sort((a,b)=> (a.date+' '+a.time).localeCompare(b.date+' '+b.time));
-  const dateLabel = e => new Date(`${e.date}T${e.time}:00-05:00`).toLocaleDateString('en-CA',{timeZone:'America/Toronto',weekday:'short',month:'short',day:'numeric'});
-  const timeLabel = e => new Date(`${e.date}T${e.time}:00-05:00`).toLocaleTimeString('en-CA',{timeZone:'America/Toronto',hour:'numeric',minute:'2-digit'});
-  const statusNames = {available:'TICKETS LIVE',sold_out:'SOLD OUT',unverified:'NOT VERIFIED',check_store:'CHECK STORE',no_event:'WATCHING'};
-  const badge = status => `<span class="badge ${safe(status)}">${safe(statusNames[status]||'NOT VERIFIED')}</span>`;
-  const firstArea = c => c==='Toronto' || c==='North York' ? 'Toronto' : c;
-  function loadPrefs(){
+  const PRIMARY_URL = 'https://enterthebattlefield.ca/products/nico-robin-010-alternate-art-eb05-010-extra-booster-one-piece-heroines-edition-vol-2-foil';
+  const THRESHOLD = 50;
+  const MAX_AGE = 2 * 60 * 60 * 1000;
+  const app = document.getElementById('app');
+  const refreshButton = document.getElementById('refreshBtn');
+  let feed = null;
+  let feedError = null;
+  let view = 'offers';
+  let filter = 'all';
+  let loading = false;
+  let toastTimer;
+  const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const safeUrl = value => {
+    if (typeof value !== 'string' || !value.trim()) return '';
+    try { const url = new URL(value, location.href); return ['https:', 'http:'].includes(url.protocol) ? url.href : ''; }
+    catch { return ''; }
+  };
+  const validPrice = value => typeof value === 'number' && Number.isFinite(value) && value >= 0;
+  const money = value => validPrice(value) ? new Intl.NumberFormat('en-CA', {minimumFractionDigits:2, maximumFractionDigits:2}).format(value) : '—';
+  const date = value => {
+    const time = Date.parse(value);
+    return Number.isFinite(time) ? new Intl.DateTimeFormat('en-CA', {timeZone:'America/Toronto', month:'short', day:'numeric', hour:'numeric', minute:'2-digit'}).format(time) + ' ET' : 'Not checked yet';
+  };
+  const ageIsValid = value => {
+    const time = Date.parse(value);
+    return Number.isFinite(time) && Date.now() - time <= MAX_AGE && time - Date.now() < 5 * 60 * 1000;
+  };
+  const isFresh = () => !!feed && !feedError && ageIsValid(feed.meta.lastChecked);
+  const offers = () => feed ? feed.offers : [];
+  const stores = () => feed ? feed.stores : [];
+  const storeFor = offer => stores().find(store => store.id === offer.storeId) || {name:'Unknown retailer', status:'error'};
+  const verified = offer => isFresh() && !offer.stale && ageIsValid(offer.lastSeen) && storeFor(offer).status === 'ok' && offer.currency === 'CAD' && validPrice(offer.price);
+  const inStock = offer => verified(offer) && offer.inStock === true && offer.eligible === true;
+  const below = offer => inStock(offer) && offer.price < THRESHOLD;
+  const link = (url, text, className = '') => safeUrl(url) ? `<a class="${escape(className)}" href="${escape(safeUrl(url))}" target="_blank" rel="noopener noreferrer">${text}</a>` : '';
+  const badge = (text, type) => `<span class="badge ${escape(type)}">${escape(text)}</span>`;
+  function notify(message) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 3500);
+  }
+  function empty(title, description, primaryLink = false) {
+    return `<div class="empty-state" data-empty-state><div class="empty-icon" aria-hidden="true">↘</div><h3>${escape(title)}</h3><p>${escape(description)}</p>${primaryLink ? link(PRIMARY_URL, 'Open your original listing ↗') : ''}</div>`;
+  }
+  function hero() {
+    return `<section class="hero" aria-labelledby="watch-title"><div><div class="eyebrow"><span class="tiny-line" aria-hidden="true"></span>A little patience. A better price.</div><h1 id="watch-title">Nico Robin.<br><em>Your price.</em></h1><p class="hero-description">Watching Canadian sellers for the same alternate-art foil card, in stock and below your target.</p><div class="product-tags"><span>EB05-010</span><span>ALTERNATE ART</span><span>FOIL · ENGLISH</span></div></div><div class="target-card"><div class="target-label">YOUR TARGET · STRICTLY BELOW</div><div class="target-price"><small>CA$</small>50</div><div class="target-foot">In stock · before shipping & tax<br>CA$50.00 does not qualify</div></div></section>`;
+  }
+  function notices() {
+    if (feedError) return `<div class="notice error" role="status">${escape(feed ? 'The latest feed could not be loaded. Previously loaded prices are shown as unverified; they are not counted as current deals.' : 'The published price feed is unavailable. No current price or stock has been verified on this screen.')} ${escape(!navigator.onLine ? 'You appear to be offline.' : 'Try refreshing shortly.')}</div>`;
+    if (!feed) return '<div class="notice info">Waiting for the first published price check. The dashboard is ready; there are no verified price observations yet.</div>';
+    if (!isFresh()) return '<div class="notice">The last published check is more than two hours old, or its timestamp could not be verified. Historical prices are shown below, but none are counted as current deals.</div>';
+    const failed = stores().filter(store => !['ok', 'no_match'].includes(store.status));
+    return failed.length ? `<div class="notice">${failed.length} ${failed.length === 1 ? 'store could' : 'stores could'} not be verified on the latest run. A blocked or failed check does not mean the card is sold out. See Store checks for details.</div>` : '';
+  }
+  function stats() {
+    const current = offers().filter(inStock);
+    const lowest = current.length ? Math.min(...current.map(offer => offer.price)) : null;
+    const checked = stores().filter(store => ['ok','no_match'].includes(store.status)).length;
+    const total = stores().length;
+    return `<div class="stats" aria-label="Watchlist summary"><div class="stat"><div class="stat-label">Lowest in stock</div><div class="stat-value" data-lowest-price>${lowest !== null ? `<small>CA$</small>${money(lowest)}` : '—'}</div><div class="stat-desc">${current.length ? 'Verified exact-card listing' : 'No current in-stock price verified'}</div></div><div class="stat match-stat"><div class="stat-label">Below your target</div><div class="stat-value" data-match-count>${offers().filter(below).length}<small> ${offers().filter(below).length === 1 ? 'listing' : 'listings'}</small></div><div class="stat-desc">In stock and strictly under CA$50</div></div><div class="stat"><div class="stat-label">Stores checked</div><div class="stat-value" data-store-count>${feed ? `${checked}<small> / ${total}</small>` : '—'}</div><div class="stat-desc">${feed ? 'Successful public-page checks' : 'Awaiting the first published run'}</div></div><div class="stat"><div class="stat-label">Scheduled interval</div><div class="stat-value">${feed ? escape(feed.meta.intervalMinutes || 30) : '30'}<small> min</small></div><div class="stat-desc">GitHub schedules can be delayed</div></div></div>`;
+  }
+  function priceCard(offer, index) {
+    const store = storeFor(offer);
+    const fresh = verified(offer);
+    const match = below(offer);
+    const stock = inStock(offer);
+    const priceAvailable = offer.currency === 'CAD' && validPrice(offer.price);
+    const dropped = fresh && stock && validPrice(offer.previousPrice) && offer.previousPrice > offer.price;
+    const condition = offer.condition && offer.condition !== offer.variant ? `${offer.variant || ''}${offer.variant ? ' · ' : ''}${offer.condition}` : offer.variant || offer.condition || 'Condition not specified';
+    const state = !fresh ? badge('Unverified / past check', 'warning') : match ? badge('Below target', 'match') : stock ? badge('In stock', 'instock') : badge('Out of stock', 'soldout');
+    const context = !fresh ? 'Last observed price' : match ? `<span class="drop-text">CA$${money(THRESHOLD - offer.price)} below target</span>` : stock ? `CA$${money(Math.max(0, offer.price - THRESHOLD))} ${offer.price === THRESHOLD ? 'at the limit · does not qualify' : 'above target'}` : 'Not counted as a deal';
+    return `<article class="offer-card ${match ? 'match' : ''} ${!fresh ? 'stale' : ''}" data-offer-id="${escape(offer.id)}" data-qualified="${match}" data-stock="${stock}"><div class="offer-top"><span class="retailer">${escape(store.name)}</span>${state}</div><h3 class="offer-title">Nico Robin · EB05-010</h3><p class="variant">${escape(condition)}</p><div class="price-row"><div class="offer-price">${priceAvailable ? `<small>CA$</small>${money(offer.price)}` : 'Unverified'}</div><div class="price-context">${context}</div></div>${dropped ? `<div class="drop-text">↓ CA$${money(offer.previousPrice - offer.price)} price drop <span class="price-previous">· was CA$${money(offer.previousPrice)}</span></div>` : ''}<div class="price-facts"><span>Alternate art · English foil</span>${validPrice(offer.minPrice) ? `<span>Lowest seen CA$${money(offer.minPrice)}</span>` : ''}</div><div class="offer-bottom"><span class="checked-time">${escape(date(offer.lastSeen))}</span>${link(offer.url, 'Check retailer <span aria-hidden="true">↗</span>', 'buy-link')}</div>${!fresh ? '<p class="offer-warning">Current stock and price have not been verified. Check the store directly.</p>' : ''}</article>`;
+  }
+  function offerSection() {
+    let list = [...offers()];
+    if (filter === 'instock') list = list.filter(inStock);
+    if (filter === 'below') list = list.filter(below);
+    list.sort((a,b) => Number(below(b)) - Number(below(a)) || Number(inStock(b)) - Number(inStock(a)) || Number(verified(b)) - Number(verified(a)) || (validPrice(a.price) ? a.price : Infinity) - (validPrice(b.price) ? b.price : Infinity));
+    const header = `<div class="section-top"><div><h2 class="section-title">The Canadian watchlist</h2><p class="section-subtitle">Exact-card listings. Stock and price checked together.</p></div><div class="filters" aria-label="Filter listings">${[['all','All listings'],['instock','In stock'],['below','Below CA$50']].map(([id,label]) => `<button type="button" class="filter ${filter === id ? 'active' : ''}" data-filter="${id}" aria-pressed="${filter === id}">${label}</button>`).join('')}</div></div>`;
+    if (!feed) return header + empty(feedError ? 'Waiting for a verified check' : 'Your card is on the list', 'A scheduled scan will publish exact matches here. No price or stock is assumed before the first successful check.', true);
+    if (!list.length) {
+      if (filter === 'below') return header + empty('No verified listings below CA$50', 'Only in-stock, Canadian-dollar listings strictly below your target count. Unverified or older prices are excluded.', true);
+      if (filter === 'instock') return header + empty('No current in-stock listings verified', 'Stores may be sold out, unavailable to the checker, or still waiting for a verified match. See Store checks for coverage.', true);
+      return header + empty('No exact-card listing verified yet', 'The scanner will only add confirmed EB05-010 alternate-art English foil matches. See Store checks to distinguish no match from an unavailable store.', true);
+    }
+    return header + `<div class="offer-list">${list.map(priceCard).join('')}</div>`;
+  }
+  function storeSection() {
+    const header = '<div class="section-top"><div><h2 class="section-title">Store checks</h2><p class="section-subtitle">A clear result for each store on the latest scheduled run.</p></div></div>';
+    if (!stores().length) return header + empty('First scan pending', 'Store-by-store results will appear after a published scan. The original Enter the Battlefield link is included in the watchlist.', true);
+    const labels = {ok:['Checked','instock'],no_match:['No exact match','soldout'],blocked:['Access blocked','warning'],error:['Check failed','error']};
+    return header + `<div class="store-list">${stores().map(store => {
+      const label = labels[store.status] || ['Not verified','warning'];
+      return `<article class="store-row" data-store-id="${escape(store.id)}"><div class="store-top">${link(store.url, escape(store.name), 'store-name') || `<span class="store-name">${escape(store.name)}</span>`}${badge(label[0], label[1])}</div><p class="store-message">${escape(store.message || 'No details available for this check.')}</p><div class="store-check-time">${escape(date(store.checkedAt))}${!isFresh() ? ' · past check' : ''}</div></article>`;
+    }).join('')}</div>`;
+  }
+  function render() {
+    app.setAttribute('aria-busy', String(loading));
+    const status = !feed ? 'First published check pending' : `${isFresh() ? 'Last published check' : 'Last recorded check'}: ${date(feed.meta.lastChecked)}`;
+    app.innerHTML = hero() + `<div class="status-strip"><span class="status-summary"><i class="status-dot ${!feed ? 'pending' : !isFresh() ? 'warning' : ''}" aria-hidden="true"></i><span data-last-checked>${escape(status)}</span></span><span class="cad-note">CANADIAN SELLERS · CAD</span></div>` + notices() + stats() + `<div class="view-tabs" aria-label="Watchlist views"><button type="button" class="view-tab ${view === 'offers' ? 'active' : ''}" data-view="offers" aria-pressed="${view === 'offers'}">Listings<span class="tab-count">${offers().length}</span></button><button type="button" class="view-tab ${view === 'stores' ? 'active' : ''}" data-view="stores" aria-pressed="${view === 'stores'}">Store checks<span class="tab-count">${stores().length}</span></button></div>` + (view === 'stores' ? storeSection() : offerSection()) + `<details class="explanation"><summary>How this watchlist works</summary><div class="explanation-grid"><div><h3>The exact card</h3><p>Nico Robin EB05-010, alternate-art English foil from One Piece Heroines Edition Vol. 2. Other card numbers, regular art, graded cards, and ambiguous listings are excluded.</p></div><div><h3>Your CA$50 rule</h3><p>A qualifying listing must be verified in stock and priced below CA$50.00 in Canadian dollars. Shipping and tax are extra. A first verified find below the target can qualify without a previous price.</p></div><div><h3>Scheduled, with limits</h3><p>Checks run on GitHub approximately every 30 minutes; schedules can be delayed. Refresh loads the latest published results, not a new store scan. Failed checks and observations over two hours old never count as current deals. ${link('./notifications.html', 'Manage alerts ↗')}</p></div></div></details>`;
+  }
+  async function refresh(silent = false) {
+    if (loading) return;
+    loading = true;
+    refreshButton.disabled = true;
+    app.setAttribute('aria-busy','true');
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 15000);
     try {
-      const p=JSON.parse(localStorage.getItem(STORAGE));
-      if(!p || typeof p!=='object') return structuredClone(fallbackPrefs);
-      return {...structuredClone(fallbackPrefs),...p};
-    } catch { return structuredClone(fallbackPrefs); }
-  }
-  function save(){ try { localStorage.setItem(STORAGE, JSON.stringify(prefs)); } catch {} }
-  function notify(msg){ const el=$('toast'); el.textContent=msg; el.classList.add('show'); clearTimeout(toastTimer); toastTimer=setTimeout(()=>el.classList.remove('show'),2900); }
-  function lastChecked(){
-    if(!data.meta.lastChecked) return 'Not connected to scheduled checks';
-    const d=new Date(data.meta.lastChecked);
-    if(Number.isNaN(d.getTime())) return 'Last check time unavailable';
-    return `Published check: ${d.toLocaleString('en-CA',{timeZone:'America/Toronto',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})} ET`;
-  }
-  function isStale(e){
-    if(!e.lastVerified) return true;
-    const verified = new Date(`${e.lastVerified}T12:00:00-05:00`).getTime();
-    return Date.now()-verified > 24*3600000;
-  }
-  function areaChip(a){return `<button class="chip ${area===a?'active':''}" data-area="${safe(a)}">${safe(a)}</button>`;}
-  function chips(){return `<div class="filterbar" role="group" aria-label="Filter by location">${['All','Toronto','Scarborough','Vaughan','Richmond Hill','Markham'].map(areaChip).join('')}</div>`;}
-  function stats(){
-    const events=allEvents();
-    return `<div class="statgrid"><div class="stat"><strong>${allStores().length}</strong><span>SHOPS WATCHED</span></div><div class="stat open"><strong>${events.filter(e=>e.status==='available').length}</strong><span>TICKETS LIVE*</span></div><div class="stat sold"><strong>${events.filter(e=>e.status==='sold_out').length}</strong><span>SOLD OUT*</span></div></div>`;
-  }
-  function eventRow(e){
-    return `<div class="eventline"><div><div class="eventname">${safe(dateLabel(e))} · ${safe(timeLabel(e))}</div><div class="eventdesc">${safe(findStore(e.storeId).name)} ${e.price!=null?`· <span class="price">${money(e.price)}</span>`:''}</div></div>${badge(e.status)}</div>`;
-  }
-  function eventCard(e){
-    const s=findStore(e.storeId), bought=prefs.tickets.includes(e.id);
-    return `<article class="card ${e.status==='available'?'ticket':''}">
-      <div class="cardtop"><div><div class="store-title">${safe(s.name)}</div><div class="area">${safe(s.city)} · ${safe(dateLabel(e))} at ${safe(timeLabel(e))}</div></div>${badge(e.status)}</div>
-      <div class="mini-line">${e.price!=null?'Entry '+money(e.price)+' · ':''}${e.tcgPlus?'Bandai TCG+ also required · ':''}Status: ${safe(e.lastVerified||'not verified')} · ${safe(e.statusSource||'Store page')}${isStale(e)?' · <span class="recheck">stale: recheck store</span>':''}</div>
-      <div class="actions">${link(e.url||s.url,'Open ticket page',e.status==='available'?'action primary':'action')}<button class="action" data-ticket="${safe(e.id)}">${bought?'✓ Ticket secured':'I got a ticket'}</button></div>
-    </article>`;
-  }
-  function dropCountdown(){
-    const left=new Date('2026-11-11T13:00:00-05:00').getTime()-Date.now();
-    if(left<=0) return 'Scheduled sale time reached — check official shop';
-    const d=Math.floor(left/86400000), h=Math.floor(left%86400000/3600000), m=Math.floor(left%3600000/60000), s=Math.floor(left%60000/1000);
-    return d+'d '+h+'h '+m+'m '+s+'s until the scheduled ticket drop';
-  }
-  function priorityCard(){
-    return `<article class="card priority-drop"><div class="kicker">★ TOP PRIORITY · UPCOMING TICKET DROP</div>
-      <h2>Untouchables — Mississauga</h2>
-      <p><strong>Wednesday, November 11, 2026 · 1:00 PM EST</strong></p>
-      <p class="helper">OP-18 sealed release events: November 21 and 22 at 1:00 PM · CA$50 each · 32 players per event.</p>
-      <div id="dropCountdown" class="drop-countdown">${safe(dropCountdown())}</div>
-      <p class="helper">Official page currently shows Sold Out ahead of its announced sale. A countdown is not proof that tickets are available. Bandai TCG+ participation requirements should be confirmed with the store.</p>
-      <div class="actions"><a class="action primary" href="https://untouchables.ca/collections/major-events/products/opce-the-dominance-of-god-release-event-ticket" target="_blank" rel="noopener noreferrer">Open ticket purchase page ↗</a><a class="action" href="./untouchables-op18-2026-11-11.ics">Add iPhone Calendar reminders</a></div>
-      <p class="helper">Calendar alerts: 1 hour, 15 minutes, 5 minutes and at the scheduled opening. Import the calendar file to activate them.</p>
-    </article>`;
-  }
-  function storeCard(s){
-    const ev=allEvents().filter(e=>e.storeId===s.id);
-    const fav=prefs.favorites.includes(s.id);
-    const progress=prefs.progress[s.id]||'watching';
-    const topStatus=ev.some(e=>e.status==='available')?'available':ev.length&&ev.every(e=>e.status==='sold_out')?'sold_out':ev.length?'check_store':'no_event';
-    return `<article class="card" id="shop-${safe(s.id)}"><div class="cardtop"><div><div class="store-title">${safe(s.name)}</div><div class="area">${safe(s.city)} ${s.priority?'· Priority shop':''}</div></div><div class="row">${badge(topStatus)}<button class="plainicon ${fav?'saved':''}" data-fav="${safe(s.id)}" title="${fav?'Unpin':'Pin'} store" aria-label="${fav?'Unpin':'Pin'} ${safe(s.name)}">★</button></div></div>
-    ${ev.length?`<div style="margin-top:11px">${ev.map(eventRow).join('')}</div>`:`<p class="helper">No OP-18 release event confirmed yet. Regular One Piece tournaments do not count.</p>`}
-    <div class="actions">${link(s.url,'Open store / tickets')}${s.eventsUrl && s.eventsUrl!==s.url?link(s.eventsUrl,'Event calendar'):''}${s.id.startsWith('custom-')?`<button class="action" data-remove="${safe(s.id)}">Remove</button>`:''}</div>
-    <div class="personalrow"><label for="progress-${safe(s.id)}">MY PROGRESS</label><select id="progress-${safe(s.id)}" data-progress="${safe(s.id)}">${[['watching','Watching'],['contacted','Asked store'],['waitlist','Waitlist / restock alert'],['tcg','Applied via TCG+']].map(([key,text])=>`<option value="${key}" ${progress===key?'selected':''}>${text}</option>`).join('')}</select><button class="note-btn" data-note="${safe(s.id)}">${prefs.notes[s.id]?'Edit note':'+ Note'}</button></div>
-    ${prefs.notes[s.id]?`<p class="helper"><b>My note:</b> ${safe(prefs.notes[s.id])}</p>`:''}
-    ${s.notes?`<p class="helper">${safe(s.notes)}</p>`:''}</article>`;
-  }
-  function discoveries(){
-    const list=(data.discoveries||[]).slice().reverse();
-    return !list.length ? '' : `<div class="sectionhead"><h2>Possible new listings</h2></div><div class="notice info">These links were discovered automatically, but <b>tickets have not been verified</b>. Open the store page before making plans.</div>${list.slice(0,8).map(d=>`<article class="card"><div class="cardtop"><div><div class="store-title">${safe(findStore(d.storeId).name)}</div><div class="area">${safe(d.title||'Possible OP-18 event')}</div></div>${badge('unverified')}</div><div class="actions">${link(d.url,'Review listing')}</div><p class="helper">Discovered ${safe(d.firstSeen||'recently')} · Not confirmed available.</p></article>`).join('')}`;
-  }
-  function dashboard(){
-    const favorites=allStores().filter(s=>prefs.favorites.includes(s.id));
-    const events=allEvents();
-    const open=events.filter(e=>e.status==='available');
-    const checked = data.checks||[];
-    return `<section class="hero"><div class="kicker">✧ 4th anniversary release</div><h1>THE DOMINANCE<br>OF GOD</h1><p>Your personal GTA OP-18 event ticket mission control.</p><div class="hero-tag">SET RELEASE <b>20 NOV 2026</b></div></section>
-    <div class="subbar"><span><i class="status-dot"></i>${safe(lastChecked())}</span><span>${data.meta.lastChecked?'ONLINE FEED':'STARTER SNAPSHOT'}</span></div>
-    ${stats()}
-    ${priorityCard()}
-    ${!data.meta.lastChecked?'<div class="notice info"><b>Setup needed for automatic app updates.</b> Your existing ChatGPT hourly ticket alerts are separate and remain active. Host this dashboard and enable its scheduled scanner to see new checks here.</div>':''}
-    <div class="sectionhead"><h2>Ticket opportunities</h2><button class="linkbutton" data-go="events">View all →</button></div>
-    ${open.length?open.slice(0,3).map(eventCard).join(''):'<div class="notice">No confirmed purchasable OP-18 tickets in the latest saved data. Sold-out listings may change; use the direct store links to check.</div>'}
-    ${discoveries()}
-    <div class="sectionhead"><h2>Your priority shops</h2><button class="linkbutton" data-go="stores">All shops →</button></div>
-    ${favorites.slice(0,5).map(storeCard).join('')||'<div class="empty">Star a shop in the Shops tab to pin it here.</div>'}
-    <div class="sectionhead"><h2>Upcoming event dates</h2><button class="linkbutton" data-go="events">Full schedule →</button></div>
-    <div class="card">${events.slice(0,5).map(eventRow).join('')}</div>
-    <p class="helper">*Statuses are a saved snapshot until the monitor has verified them again. Green means a confirmed positive check, not a guaranteed seat at checkout.</p>`;
-  }
-  function eventsPage(){
-    const list=allEvents().filter(e=> (area==='All'||firstArea(findStore(e.storeId).city)===area) && (eventFilter==='All'||e.status===eventFilter) && `${findStore(e.storeId).name} ${findStore(e.storeId).city}`.toLowerCase().includes(search.toLowerCase()));
-    let lastDate='';
-    const cards=list.map(e=>{ const date=e.date; const label=date!==lastDate?`<div class="daylabel">${safe(dateLabel(e))}</div>`:''; lastDate=date; return label+eventCard(e); }).join('');
-    return `<div class="pagehead"><div class="kicker">TICKET MISSION</div><h1>Release events</h1><p>Confirmed OP-18 dates, prices and direct pages. All event times Eastern.</p></div>
-    <input class="searchbox" id="search" value="${safe(search)}" placeholder="Search shops or locations" aria-label="Search events">
-    ${chips()}<div class="filterbar" role="group" aria-label="Filter event status">${[['All','All'],['available','Tickets live'],['sold_out','Sold out'],['check_store','Check store']].map(([id,label])=>`<button class="chip ${eventFilter===id?'active':''}" data-status="${safe(id)}">${safe(label)}</button>`).join('')}</div>
-    <p class="helper">${list.length} listed event${list.length!==1?'s':''} · Prices in CAD · Check official tickets before travelling.</p>${cards||'<div class="empty">No events match these filters. Try All areas or another status.</div>'}${discoveries()}`;
-  }
-  function storesPage(){
-    const list=allStores().filter(s=>(area==='All'||firstArea(s.city)===area) && `${s.name} ${s.city}`.toLowerCase().includes(search.toLowerCase())).sort((a,b)=>{const af=prefs.favorites.includes(a.id)?0:1,bf=prefs.favorites.includes(b.id)?0:1;return af-bf||a.name.localeCompare(b.name);});
-    return `<div class="pagehead"><div class="kicker">GTA NETWORK</div><h1>Watched card shops</h1><p>Star shops to keep them on your dashboard. Store calendars are monitored where public pages allow it.</p></div>
-    <input class="searchbox" id="search" value="${safe(search)}" placeholder="Search 401 Games, Dolly's, Game Shack…" aria-label="Search stores">
-    ${chips()}<div class="row between" style="margin-bottom:13px"><span class="muted small">${list.length} shops displayed</span><button class="linkbutton" data-add="1">+ Add a shop</button></div>
-    ${list.map(storeCard).join('')||'<div class="empty">No stores found. Try another area.</div>'}`;
-  }
-  function activityPage(){
-    const checks = data.checks||[];
-    const total=data.stores.length, checked=checks.filter(c=>c.ok).length;
-    const activity=[...(data.activity||[])].sort((a,b)=>String(b.timestamp).localeCompare(String(a.timestamp)));
-    const ratio=total?Math.round(100*checked/total):0;
-    return `<div class="pagehead"><div class="kicker">WATCH PROGRESS</div><h1>Check history</h1><p>Shows the latest published scanner activity. It cannot read ChatGPT automation run history directly.</p></div>
-    <div class="card"><div class="row between"><span class="store-title">Latest website scan</span><span class="badge unverified">${data.meta.lastChecked?'SCAN LOG':'NO LIVE FEED'}</span></div><p class="helper">${safe(lastChecked())}</p><div class="progress-track"><div style="width:${ratio}%"></div></div><p class="helper">${checked} of ${total} store pages successfully checked during the last published scan. Pages with access restrictions may require manual checks.</p></div>
-    <div class="sectionhead"><h2>Recent changes & checks</h2></div>
-    ${activity.length?activity.slice(0,70).map(a=>`<div class="checkrow"><h3>${safe(a.type==='available'?'Ticket availability detected':a.type==='discovery'?'New possible listing':a.type==='sold_out'?'Sold-out status confirmed':'Watch update')}</h3><p>${safe(a.message)}</p><time>${safe(new Date(a.timestamp).toLocaleString('en-CA',{timeZone:'America/Toronto',dateStyle:'medium',timeStyle:'short'}))} ET</time></div>`).join(''):'<div class="empty">No activity has been recorded yet.</div>'}
-    ${checks.length?`<div class="sectionhead"><h2>Store scanner diagnostics</h2></div>${checks.map(c=>`<div class="eventline"><div><div class="eventname">${safe(findStore(c.storeId).name)}</div><div class="eventdesc">${safe(c.message||'')}</div></div><span class="badge ${c.ok?'check_store':'unverified'}">${c.ok?'CHECKED':'NOT CHECKED'}</span></div>`).join('')}`:''}`;
-  }
-  function settingsPage(){
-    return `<div class="pagehead"><div class="kicker">CAPTAIN'S CONTROLS</div><h1>Settings & setup</h1><p>Keep your ticket watch organized and get it onto your iPhone Home Screen.</p></div>
-    <div class="card"><div class="setting"><h3>🔔 ChatGPT ticket alerts</h3><p>Your existing <b>OP-18 GTA Ticket Watch</b> is a separate hourly condition-watch automation. It notifies you through ChatGPT when a meaningful new ticket opportunity is found. For this tracker’s own alerts, open <a href="./notifications.html">notification settings</a>. Web Push requires the push service to be connected and permission enabled on this device.</p></div>
-    <div class="setting"><h3>↻ Dashboard data checks</h3><p>${safe(lastChecked())}. To enable automatic web checks inside this app, deploy the included project to GitHub Pages and enable GitHub Actions. Scheduled checks can be delayed by GitHub.</p></div>
-    <div class="setting"><h3>📲 Install on iPhone</h3><p>After hosting the app at an HTTPS URL, open it in Safari, tap <b>Share</b>, then <b>Add to Home Screen</b>. Opening a downloaded HTML file alone will not provide reliable app installation or synchronization.</p></div>
-    <div class="setting"><h3>☠️ Ticket safety</h3><p>The monitor only treats product pages with confirmed ticket inventory as available. A product page, weekly local event, or third-party tracker label is not proof of an open seat. Always confirm at checkout.</p></div></div>
-    <div class="card"><h3 style="margin:0 0 7px">Personal tracking</h3><p class="helper">You have marked <b>${prefs.tickets.length} ticket(s) secured</b> and pinned <b>${prefs.favorites.length} shop(s)</b>. Your choices are saved on this device, not shared with other devices.</p><div class="settingsbuttons"><button class="widebtn" data-export="1">Export my tracking</button><button class="widebtn" data-reset="1">Reset tracking</button></div></div>
-    <p class="helper">Unofficial fan-made tracker. Not affiliated with Bandai, One Piece or the stores listed. No payments are processed in this app.</p>`;
-  }
-  function render(){
-    const nav = document.querySelectorAll('[data-tab]');
-    nav.forEach(el=>{el.classList.toggle('active',el.dataset.tab===tab);if(el.dataset.tab===tab) el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});
-    $('app').innerHTML=({dashboard,events:eventsPage,stores:storesPage,activity:activityPage,settings:settingsPage})[tab]();
-  }
-  function changeTab(newTab){ tab=newTab;area='All';eventFilter='All';search='';render();scrollTo({top:0,behavior:'instant'}); }
-  async function refresh(silent=false){
-    const btn=$('refreshBtn');btn.disabled=true;
-    try {
-      const res=await fetch(`./data/status.json?t=${Date.now()}`,{cache:'no-store'});
-      if(!res.ok) throw Error(`HTTP ${res.status}`);
-      const next=await res.json();
-      if(!Array.isArray(next.stores)||!Array.isArray(next.events)||!next.meta) throw Error('Invalid feed');
-      data=next;lastFeedError=null;
-      if(!silent) notify(next.meta.lastChecked?'Latest published check loaded':'Starter snapshot loaded');
+      const response = await fetch(`./data/prices.json?t=${Date.now()}`, {cache:'no-store', signal:controller.signal});
+      if (!response.ok) throw new Error(`Price feed HTTP ${response.status}`);
+      const next = await response.json();
+      if (!next || !next.meta || !Array.isArray(next.stores) || !Array.isArray(next.offers) || next.watch?.currency !== 'CAD' || next.watch?.cardId !== 'EB05-010' || Number(next.watch?.threshold) !== THRESHOLD || next.watch?.comparison !== 'below') throw new Error('Invalid or unexpected watchlist feed');
+      feed = next;
+      feedError = null;
+      if (!silent) notify('Latest published price check loaded');
+    } catch (error) {
+      feedError = error.message;
+      if (!silent) notify('Could not load a current price check');
+    } finally {
+      clearTimeout(timer);
+      loading = false;
+      refreshButton.disabled = false;
       render();
-    } catch(err){ lastFeedError=err.message;if(!silent)notify('No hosted feed — showing saved snapshot'); }
-    finally{btn.disabled=false;}
+    }
   }
-  document.addEventListener('click',e=>{
-    const n=e.target.closest('[data-tab]'); if(n){changeTab(n.dataset.tab);return;}
-    const go=e.target.closest('[data-go]');if(go){changeTab(go.dataset.go);return;}
-    const loc=e.target.closest('[data-area]');if(loc){area=loc.dataset.area;render();return;}
-    const filter=e.target.closest('[data-status]');if(filter){eventFilter=filter.dataset.status;render();return;}
-    const fav=e.target.closest('[data-fav]');if(fav){const id=fav.dataset.fav;prefs.favorites=prefs.favorites.includes(id)?prefs.favorites.filter(x=>x!==id):[...prefs.favorites,id];save();render();notify(prefs.favorites.includes(id)?'Store pinned':'Store unpinned');return;}
-    const ticket=e.target.closest('[data-ticket]');if(ticket){const id=ticket.dataset.ticket;prefs.tickets=prefs.tickets.includes(id)?prefs.tickets.filter(x=>x!==id):[...prefs.tickets,id];save();render();notify(prefs.tickets.includes(id)?'Marked ticket secured':'Ticket mark removed');return;}
-    if(e.target.closest('[data-add]')){$('storeDialog').showModal();return;}
-    const note=e.target.closest('[data-note]');if(note){const id=note.dataset.note;const updated=prompt('Private note for this shop:',prefs.notes[id]||'');if(updated!==null){prefs.notes[id]=updated.slice(0,500);save();render();notify('Note saved on this device');}return;}
-    const remove=e.target.closest('[data-remove]');if(remove){prefs.customStores=prefs.customStores.filter(s=>s.id!==remove.dataset.remove);prefs.favorites=prefs.favorites.filter(id=>id!==remove.dataset.remove);save();render();notify('Custom shop removed');return;}
-    if(e.target.closest('[data-export]')){const out=new Blob([JSON.stringify({exportedAt:new Date().toISOString(),...prefs},null,2)],{type:'application/json'});const url=URL.createObjectURL(out);const a=document.createElement('a');a.href=url;a.download='op18-my-tracking.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);notify('Export created');return;}
-    if(e.target.closest('[data-reset]')){if(confirm('Reset saved stars, ticket marks and custom shops on this device?')){prefs=structuredClone(fallbackPrefs);save();render();notify('Personal tracking reset');}return;}
+  document.addEventListener('click', event => {
+    const tab = event.target.closest('[data-view]');
+    if (tab) { view = tab.dataset.view; render(); return; }
+    const selected = event.target.closest('[data-filter]');
+    if (selected) { filter = selected.dataset.filter; render(); }
   });
-  document.addEventListener('change',e=>{if(e.target.matches('[data-progress]')){prefs.progress[e.target.dataset.progress]=e.target.value;save();notify('Store progress updated');}});
-  document.addEventListener('input',e=>{if(e.target.id==='search'){const at=e.target.selectionStart;search=e.target.value;render();const next=$('search');if(next){next.focus();next.setSelectionRange(at,at);}}});
-  $('refreshBtn').addEventListener('click',()=>refresh());
-  $('cancelDialog').addEventListener('click',()=>$('storeDialog').close());
-  $('storeForm').addEventListener('submit',e=>{ e.preventDefault();
-    const name=$('addName').value.trim(),city=$('addCity').value,url=$('addUrl').value.trim();
-    if(!name) return;if(url&&!safeUrl(url)){notify('Use a valid https:// URL');return;}
-    const id='custom-'+Date.now();
-    prefs.customStores.push({id,name,city,url,eventsUrl:url,notes:'Manual entry — not included in automatic website scanner',priority:false});
-    prefs.favorites.push(id); save();$('storeForm').reset();$('storeDialog').close();tab='stores';render();notify('Custom shop added');
-  });
-  setInterval(()=>{const x=$('dropCountdown'); if(x)x.textContent=dropCountdown();},1000);
-  render();refresh(true);
-  document.addEventListener('visibilitychange',()=>{if(!document.hidden) refresh(true);});
-  setInterval(()=>{if(!document.hidden)refresh(true)},300000);
-  if('serviceWorker' in navigator && (location.protocol==='https:'||location.hostname==='localhost')){
-    window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+  refreshButton.addEventListener('click', () => refresh());
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) refresh(true); });
+  window.addEventListener('online', () => refresh(true));
+  window.addEventListener('offline', () => { feedError = 'Offline'; render(); });
+  setInterval(() => { if (!document.hidden) refresh(true); }, 5 * 60 * 1000);
+  setInterval(() => { if (!loading && feed) render(); }, 60 * 1000);
+  render();
+  refresh(true);
+  if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
   }
 })();

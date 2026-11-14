@@ -1,69 +1,80 @@
-name: Update OP-18 ticket radar
+name: Robin price-drop watchlist
 on:
   push:
     branches: [main]
-    paths-ignore: ['data/status.json']
+    paths-ignore: ['data/prices.json', 'data/status.json', 'data/push-state.json']
   schedule:
-    - cron: '7 * * * *'
+    - cron: '13,43 * * * *'
   workflow_dispatch:
 permissions:
   contents: write
   pages: write
   id-token: write
 concurrency:
-  group: op18-radar
+  group: robin-price-watchlist
   cancel-in-progress: false
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 15
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python -m pip install 'requests>=2.31,<3'
-      - run: python scripts/test_monitor.py
-      - run: python scripts/monitor.py
-      - name: Send ticket push alerts
-        env:
-          ONESIGNAL_APP_ID: ${{ vars.ONESIGNAL_APP_ID }}
-          ONESIGNAL_REST_API_KEY: ${{ secrets.ONESIGNAL_REST_API_KEY }}
-        run: python scripts/send_push.py
-      - name: Save updated status
+      - run: python -m pip install -r requirements.txt
+      - name: Test card identity, prices, inventory and history
+        run: python -m unittest discover -s scripts -p 'test_price_monitor.py' -v
+      - name: Check Canadian card prices
+        run: python scripts/price_monitor.py
+      - name: Record scan summary
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          feed = Path('data/prices.json')
+          if not feed.exists():
+              raise SystemExit('Price checker did not produce a feed')
+          data = json.loads(feed.read_text())
+          offers = [o for o in data.get('offers', []) if o.get('eligible') and o.get('belowThreshold') and not o.get('stale')]
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as out:
+              out.write('# Robin price watch\n\n')
+              out.write('Nico Robin EB05-010 alternate art foil. Target: strictly below CA$50, in stock, before shipping/tax.\n\n')
+              out.write(f"Checked: {data.get('meta', {}).get('lastChecked', 'unknown')}\n\n")
+              out.write(f'Matching in-stock offers below target: **{len(offers)}**\n\n')
+              for store in data.get('stores', []):
+                  message = str(store.get('message', '')).replace('\n', ' ')
+                  out.write(f"- {store['name']}: {store['status']} — {message}\n")
+              out.write('\nThe dashboard shows the latest check; push/email delivery is not configured.\n')
+          PY
+      - name: Save current prices and bounded history
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/status.json
-          if [ -f data/push-state.json ]; then git add data/push-state.json; fi
+          git add data/prices.json
           if ! git diff --cached --quiet; then
-            git commit -m 'Refresh OP-18 radar status'
-            if ! git push; then
-              echo "::warning::Another edit landed while the scanner was running. Retrying safely."
-              git fetch origin main
-              if git rebase origin/main; then
-                if ! git push; then
-                  echo "::warning::Status commit could not be pushed after retry; website deployment will still proceed."
-                fi
-              else
-                git rebase --abort
-                echo "::warning::Status conflicts with another update; preserving the newer remote version. Website deployment will still proceed."
-              fi
-            fi
+            git commit -m 'Refresh Robin price watch'
+            git pull --rebase origin main
+            git push origin HEAD:main
           fi
       - uses: actions/configure-pages@v5
-      - name: Prepare website
-        env:
-          ONESIGNAL_APP_ID: ${{ vars.ONESIGNAL_APP_ID }}
+      - name: Prepare watchlist website
         run: |
-          mkdir _site
-          cp index.html app.js styles.css sw.js manifest.webmanifest .nojekyll untouchables-op18-2026-11-11.ics _site/
-          cp -r icons data push _site/
-          cp notifications.html notifications.js _site/
-          python -c 'import json,os; open("_site/push-config.json","w").write(json.dumps({"appId":os.environ.get("ONESIGNAL_APP_ID", "")}))'
+          mkdir -p _site/data
+          cp index.html app.js styles.css sw.js manifest.webmanifest .nojekyll notifications.html notifications.js _site/
+          cp -r icons _site/
+          cp data/prices.json data/watchlist.json _site/data/
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          Path('_site/push-config.json').write_text(json.dumps({'appId': '', 'robinPriceAlertsEnabled': False}))
+          PY
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

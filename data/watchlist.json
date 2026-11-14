@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "watch": {
+    "name": "Watch list - Robin Price Drop",
+    "cardId": "EB05-010",
+    "cardName": "Nico Robin",
+    "edition": "Extra Booster: One Piece Heroines Edition Vol. 2",
+    "art": "Alternate Art",
+    "finish": "Foil",
+    "language": "English",
+    "currency": "CAD",
+    "threshold": 50,
+    "comparison": "below",
+    "url": "https://enterthebattlefield.ca/products/nico-robin-010-alternate-art-eb05-010-extra-booster-one-piece-heroines-edition-vol-2-foil",
+    "priceBasis": "Card price before shipping and tax; only confirmed in-stock variants count."
+  },
+  "settings": {
+    "intervalMinutes": 30,
+    "timeoutSeconds": 12,
+    "requestDelaySeconds": 0.35,
+    "maxDiscoveryProducts": 6,
+    "maxProductsPerStore": 6
+  },
+  "stores": [
+    {
+      "id": "enter-the-battlefield",
+      "name": "Enter The Battlefield",
+      "url": "https://enterthebattlefield.ca",
+      "discover": true,
+      "productUrls": [
+        "https://enterthebattlefield.ca/products/nico-robin-010-alternate-art-eb05-010-extra-booster-one-piece-heroines-edition-vol-2-foil"
+      ]
+    },
+    {"id": "401-games", "name": "401 Games", "url": "https://store.401games.ca", "discover": true},
+    {"id": "face-to-face", "name": "Face to Face Games", "url": "https://facetofacegames.com", "discover": true},
+    {"id": "hobbiesville", "name": "Hobbiesville", "url": "https://hobbiesville.com", "discover": true},
+    {"id": "kanzen-games", "name": "Kanzen Games", "url": "https://kanzengames.com", "discover": true},
+    {"id": "deck-out-gaming", "name": "Deck Out Gaming", "url": "https://deckoutgaming.ca", "discover": true},
+    {"id": "hairy-tarantula", "name": "Hairy Tarantula", "url": "https://hairyt.com", "discover": true},
+    {"id": "dollys", "name": "Dolly's", "url": "https://dollys.ca", "discover": true}
+  ]
+}

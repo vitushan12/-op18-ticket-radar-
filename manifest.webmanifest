@@ -1,15 +1,25 @@
 {
-  "name": "OP-18 Ticket Radar — GTA",
-  "short_name": "OP18 Radar",
-  "description": "Track One Piece OP-18 release event tickets across Toronto, Scarborough and Vaughan.",
+  "name": "Robin Price Drop — Canadian Card Watchlist",
+  "short_name": "Robin Watch",
+  "description": "Watch Canadian stores for Nico Robin EB05-010 alternate-art foil below CA$50, in stock.",
   "id": "./",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#081120",
-  "theme_color": "#0b1426",
+  "background_color": "#f5f4ef",
+  "theme_color": "#17182d",
   "icons": [
-    {"src":"./icons/icon-192.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},
-    {"src":"./icons/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
   ]
 }

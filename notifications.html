@@ -1,1 +1,26 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="apple-mobile-web-app-capable" content="yes"><link rel="manifest" href="./manifest.webmanifest"><link rel="stylesheet" href="./styles.css"><title>Ticket notifications · OP18 Radar</title></head><body><main style="max-width:580px;margin:40px auto;padding:24px"><a href="./">← Back to radar</a><h1>Ticket notifications</h1><p>Get an alert when an hourly check confirms newly available OP-18 tickets. Tap an alert to open the tracker and verify with the store.</p><p>On iPhone, first add the radar to your Home Screen in Safari, then open it from that icon and return here.</p><p id="push-status" role="status" aria-live="polite">Checking notification setup…</p><button id="enable-push" class="primary" disabled>Enable notifications</button> <button id="disable-push" class="secondary" hidden>Turn off notifications</button><p class="small muted">Enabling notifications registers this browser with OneSignal, our notification provider. All subscribers receive the same ticket alerts. Your local notes and favourites are not sent. Checks are approximately hourly; notifications are not instant or guaranteed.</p></main><script src="./notifications.js" defer></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#17182d">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./styles.css">
+  <title>Alerts · Robin Price Drop</title>
+</head>
+<body>
+  <main class="page-shell" style="max-width:680px;padding:40px 24px">
+    <a href="./">← Back to watchlist</a>
+    <h1>Robin price alerts</h1>
+    <section class="card" aria-labelledby="delivery-heading">
+      <h2 id="delivery-heading">Dashboard updates</h2>
+      <p>The server checks Canadian retailers for Nico Robin EB05-010 alternate-art foil, targeting matching in-stock cards below CA$50 before shipping and tax.</p>
+      <p>Checks run approximately every 30 minutes and can be delayed by GitHub. The dashboard shows the check time, store coverage, current offers, and recorded price changes.</p>
+      <p id="push-status" role="status">Push and email alerts are not configured for this watchlist. No automatic notification will be sent to your phone or email.</p>
+      <p>You can keep the dashboard on your iPhone Home Screen: open it in Safari, tap Share, then Add to Home Screen. Installation does not enable background notifications.</p>
+      <p><a href="./">View current offers and check history →</a></p>
+    </section>
+  </main>
+  <script src="./notifications.js" defer></script>
+</body>
+</html>

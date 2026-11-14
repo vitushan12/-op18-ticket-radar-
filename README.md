@@ -1,57 +1,40 @@
-# OP-18 Ticket Radar — iPhone app
+# Robin Price Drop Watchlist
 
-An installable, phone-first **progress dashboard** for One Piece TCG OP-18 release-event tickets around **Toronto, Scarborough and Vaughan**. Includes 16 card shops and 13 event dates from a **November 1, 2026 research snapshot**.
+Watches **Nico Robin EB05-010 alternate-art foil**, starting with [Enter the Battlefield's exact listing](https://enterthebattlefield.ca/products/nico-robin-010-alternate-art-eb05-010-extra-booster-one-piece-heroines-edition-vol-2-foil), plus a bounded selection of Canadian card retailers. The target is a matching, in-stock variant **strictly below CA$50 before shipping and tax**. CA$50 itself does not qualify.
 
-## What works
+## What the watchlist does
 
-- iPhone-friendly PWA, with Home / Events / Shops / Checks / More tabs.
-- Date/time and price lists; area, status and store filters; direct store/ticket links.
-- Star favourite shops, track personal progress (asked the store, joined restock waitlist, applied on TCG+), add private notes, mark a ticket secured, add shops and export tracking settings.
-- Saves personal choices **locally on the iPhone** with browser storage.
-- Displays scanner check timestamps, successful/failed store checks, and status transitions.
-- Hosted workflow can scan public shop event pages for *possible new OP-18 event listings* and cautiously verify available ticket variants using public Shopify product JSON.
-- Works offline for existing app screens after initial installation (but **never** assumes offline ticket data is live).
+- Checks configured public retailer endpoints approximately every 30 minutes using GitHub Actions. GitHub can delay scheduled jobs; this is not continuous or instant monitoring.
+- Confirms card identity, variant availability and CAD currency before treating a price as a match. Regular-art cards, other card numbers, graded cards and explicitly foreign-language listings are excluded.
+- Keeps bounded per-variant price history. First sightings under target are labelled as under-target discoveries; actual price drops require an earlier observed price.
+- Separates failed/blocked checks from out-of-stock cards and no matching listing. Old observations are marked stale and cannot qualify as current deals.
+- Publishes the latest result to a phone-friendly dashboard. Offline data is explicitly stale.
 
-## Install on an iPhone (requires free hosting)
+This is a configured retailer watchlist, not an exhaustive search of every Canadian seller. Search APIs may omit products; access controls and site changes can prevent checks. An observed offer does not reserve a card, and shipping/tax are not included. Different raw-card conditions are shown separately; no minimum condition was specified.
 
-1. Create a **new public GitHub repository** (for example, `op18-ticket-radar`).
-2. Upload **all the files and folders in this ZIP**, preserving paths, including the hidden `.github/workflows/monitor.yml` file. It is often easiest to upload from a computer. Do not upload the enclosing `OP18-Ticket-Radar` folder as an extra level.
-3. In GitHub, open **Settings → Pages → Build and deployment → Deploy from a branch**. Choose **`main` / `/(root)`** and Save. Wait for GitHub to publish the HTTPS website; typically the URL is `https://YOUR-USERNAME.github.io/op18-ticket-radar/`.
-4. In GitHub **Settings → Actions → General**, ensure workflows are allowed and **Workflow permissions → Read and write permissions** is selected where this option is available. The workflow also declares `contents: write`.
-5. Under **Actions → Update OP-18 ticket radar → Run workflow**, run it once. The workflow also runs *approximately once an hour* via GitHub Actions; GitHub may delay or pause scheduled runs.
-6. On your iPhone, open the published HTTPS link in **Safari** → tap the **Share** icon → **Add to Home Screen** → **Add**. Open **OP18 Radar** from your Home Screen.
+## Notifications
 
-**Without hosting and the workflow:** the app will still display the saved November 1 snapshot. Do not treat it as a live stock feed. Opening `index.html` from an unzipped iPhone Files folder cannot give reliable installation or live synchronization.
+**Push and email delivery are not configured.** Scheduled checks and dashboard updates work independently of notification delivery. The notifications page states this explicitly. The old ticket-alert sender is not run by the Robin workflow. A future notification setup needs the user's chosen service and explicit subscription; do not broadcast Robin alerts to legacy ticket subscribers.
 
-## Your existing notifications
+## Development
 
-Your separately configured **ChatGPT OP-18 GTA Ticket Watch** is already scheduled hourly. Leave ChatGPT notifications enabled on iPhone. The ChatGPT automation and this app **do not share a data/API connection**; the app does not display that automation's internal run history and does not issue background push notifications. Hosting the workflow creates a **second independent scheduled web check** for the dashboard. If a ticket is important, use both direct shop restock notifications and ChatGPT alerts.
-
-## Scanner design & limitations
-
-- `scripts/monitor.py` checks public event pages and appends *potential new event listing* links in `data/status.json` with status **unverified**.
-- For known `/products/...` ticket links, it attempts a public Shopify `/products/slug.js` lookup and marks tickets **available** only when the ticket product and relevant variant are identifiable. Ambiguous variants are left unchanged or for manual verification.
-- A **sold-out status from Nov 1** is not proof that tickets are still sold out now. Event cards display verification date and stale flags.
-- Some sites use JavaScript, Cloudflare or other access controls. The scanner will show such failures without claiming stock status. It does **not** bypass anti-bot protections or log in to Bandai TCG+.
-- Shop site design or event listing paths may change. New unverified listings must be manually reviewed. Adding a custom store on your phone doesn't automatically add it to the GitHub scanner; edit `data/seed.json` and `data/status.json` for the scanner to include it.
-- GitHub Pages and Actions are hosted by GitHub; this ZIP does not create a live service until **you deploy it**. Background Web Push would need a separate push service and is intentionally not claimed here.
-- The app does not buy tickets, hold a place, or collect payment credentials.
-
-## Local test (computer)
+Use Python 3.12, matching CI. From the repository root:
 
 ```sh
-python3 -m http.server 8000
+python3 -m venv /workspace/.venvs/op18-ticket-radar
+/workspace/.venvs/op18-ticket-radar/bin/python -m pip install -r requirements.txt
+/workspace/.venvs/op18-ticket-radar/bin/python -m unittest discover -s scripts -p 'test_price_monitor.py' -v
+/workspace/.venvs/op18-ticket-radar/bin/python -m http.server 8000 --bind 127.0.0.1
 ```
 
-Open `http://localhost:8000` in a browser. To test the monitor, install `requests` and run `python scripts/monitor.py`. Use the public shop sites considerately.
+The static site has no build or database. Use localhost internally when testing the service worker. It caches the shell but never treats a cached price feed as live. A browser refresh retrieves the latest *published* scan; it does not trigger a shop scan.
 
-## Files
+The public checker is `scripts/price_monitor.py`, configured by `data/watchlist.json`; its output is `data/prices.json`. Running it normally updates the tracked feed. Use its CLI output override when experimenting to preserve the feed. Keep normal TLS verification enabled. Check public sites considerately; do not bypass login or anti-bot protections.
 
-- `index.html`, `styles.css`, `app.js`: app UI and personal tracking.
-- `manifest.webmanifest`, `sw.js`, `icons/`: installable PWA and offline shell.
-- `data/seed.json`, `data/seed.js`: initial date/status snapshot.
-- `data/status.json`: hosted web-check results feed.
-- `scripts/monitor.py`: conservative public shop checker.
-- `.github/workflows/monitor.yml`: approximately hourly GitHub Actions job.
+The earlier OP-18 ticket-scanner files remain as an archive. The active workflow and home page now serve the Robin price watchlist.
 
-Unofficial fan-made event tracker. Not affiliated with Bandai, One Piece, or any card shop.
+## Hosting
+
+`.github/workflows/monitor.yml` tests the scanner, fetches current offers, commits the feed/history and deploys the dashboard to GitHub Pages. Run it manually with **Actions → Robin price-drop watchlist → Run workflow**. GitHub Pages must use **GitHub Actions** as its deployment source. The workflow requires repository contents and Pages write permissions, declared in the workflow.
+
+The environment display name is separate from the GitHub repository name and Pages URL. Renaming a repository requires GitHub administration permission; do not assume a new Pages URL exists until GitHub confirms it and deployment succeeds.
