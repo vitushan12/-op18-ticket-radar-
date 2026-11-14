@@ -29,7 +29,7 @@ ALT = re.compile(r"\b(?:alternate\s*art|alt\.?\s*art|parallel(?:\s*art)?)\b", re
 WRONG = re.compile(r"\b(?:japanese|japan|jp|jpn|chinese|korean|french|german|italian|spanish|psa|bgs|cgc|graded|slab|manga|proxy|replica|custom|playset|bundle|sealed|booster\s*(?:box|pack|case))\b", re.I)
 NONFOIL = re.compile(r"\bnon[-\s]?foil\b", re.I)
 REGULAR = re.compile(r"\b(?:regular|normal|standard|base)\s*(?:art|version)\b", re.I)
-SPECIAL = re.compile(r"\b(?:sp|special\s+(?:art|rare)|anniversary|treasure\s+rare)\b", re.I)
+SPECIAL = re.compile(r"\b(?:sp|special\s+(?:art|rare)|super[-\s]+(?:leader|alt(?:ernate)?(?:\s*art)?|parallel)|seriali[sz]ed|signature|signed|autograph(?:ed)?|stamped|winner|championship|anniversary|treasure\s+rare)\b", re.I)
 NONSTOCK = re.compile(r"\b(?:pre[-\s]?order|back[-\s]?order|special[-\s]?order)\b", re.I)
 
 
@@ -168,7 +168,7 @@ def offer_id(store_id, url, variant):
     return hashlib.sha256(f"{store_id}|{url}|{variant.get('id', variant.get('title', ''))}".encode()).hexdigest()[:20]
 
 
-def offers_from_product(store, url, product, currency, now):
+def offers_from_product(store, url, product, currency, now, diagnostics=None):
     if currency != "CAD" or not exact_card(product):
         return []
     offers = []
@@ -179,7 +179,14 @@ def offers_from_product(store, url, product, currency, now):
         # cannot establish that this particular priced variant can be bought.
         if variant.get("available") not in (True, False) or not isinstance(variant.get("available"), bool):
             continue
-        price = cents_price(variant.get("price"))
+        try:
+            price = cents_price(variant.get("price"))
+        except ValueError:
+            # A zero-price placeholder or malformed variant must not erase a
+            # different, valid condition variant from the same product.
+            if diagnostics is not None:
+                diagnostics.append({"stage": "variant", "path": urlparse(url).path + ".js", "variantId": str(variant.get("id", "unknown")), "errorType": "InvalidPrice", "message": "Variant price is not verified positive integer cents"})
+            continue
         label = text(variant.get("title")) or "Default variant"
         variant_url = url + ("?variant=" + str(variant["id"]) if variant.get("id") else "")
         offers.append({
@@ -198,6 +205,20 @@ def offers_from_product(store, url, product, currency, now):
             "image": product.get("featured_image") or None,
         })
     return offers
+
+
+def failure_diagnostic(error, stage, url):
+    """Expose only public paths and controlled exception metadata, never bodies."""
+    diagnostic = {"stage": stage, "path": urlparse(url).path, "errorType": type(error).__name__}
+    if isinstance(error, requests.HTTPError) and error.response is not None:
+        diagnostic["httpStatus"] = error.response.status_code
+    diagnostic["message"] = "Public endpoint could not be verified"
+    return diagnostic
+
+
+def diagnostic_label(diagnostic):
+    reason = "HTTP " + str(diagnostic["httpStatus"]) if "httpStatus" in diagnostic else diagnostic["errorType"]
+    return diagnostic["path"] + " (" + reason + ")"
 
 
 def update_offer(current, previous, threshold, now):
@@ -234,10 +255,10 @@ def update_offer(current, previous, threshold, now):
 
 def check_store(store, settings, now, client_factory=StoreClient):
     summary = {k: store[k] for k in ("id", "name", "url")}
-    summary.update({"checkedAt": now, "status": "error", "message": "Check incomplete", "offers": []})
+    summary.update({"checkedAt": now, "status": "error", "message": "Check incomplete", "offers": [], "diagnostics": []})
     offers = []
     client = client_factory(store["url"], timeout=settings.get("timeoutSeconds", 12), delay=settings.get("requestDelaySeconds", 0.35))
-    errors = []
+    diagnostics = summary["diagnostics"]
     try:
         currency = client.currency()
         urls = []
@@ -250,29 +271,32 @@ def check_store(store, settings, now, client_factory=StoreClient):
                 for url in client.discover(settings.get("maxDiscoveryProducts", 6)):
                     if url not in urls:
                         urls.append(url)
-            except (requests.RequestException, ValueError, TypeError, KeyError):
-                errors.append("Product discovery unavailable")
+            except (requests.RequestException, ValueError, TypeError, KeyError) as error:
+                diagnostics.append(failure_diagnostic(error, "discovery", store["url"] + "/search/suggest.json"))
         limit = min(settings.get("maxProductsPerStore", 6), 10)
         for url in urls[:limit]:
             try:
                 product = client.product(url)
-                offers.extend(offers_from_product(store, url, product, currency, now))
-            except (requests.RequestException, ValueError, TypeError, KeyError):
-                errors.append("A product could not be verified")
+                offers.extend(offers_from_product(store, url, product, currency, now, diagnostics))
+            except (requests.RequestException, ValueError, TypeError, KeyError) as error:
+                diagnostics.append(failure_diagnostic(error, "product", url + ".js"))
         # Deduplicate direct URLs also returned by suggest and variant IDs.
         offers = list({offer["id"]: offer for offer in offers}.values())
         summary["offers"] = [offer["id"] for offer in offers]
         if offers:
-            summary.update(status="ok", message=f"CAD and exact card variants verified ({len(offers)} variant(s))" + ("; " + "; ".join(errors) if errors else ""))
-        elif errors:
-            summary.update(status="error", message="; ".join(dict.fromkeys(errors)) + "; no current offer verified")
+            summary.update(status="ok", message=f"CAD and exact card variants verified ({len(offers)} variant(s))" + ("; partial checks: " + "; ".join(dict.fromkeys(map(diagnostic_label, diagnostics))) if diagnostics else ""))
+        elif diagnostics:
+            blocked = any(d.get("httpStatus") in (401, 403, 429) for d in diagnostics)
+            summary.update(status="blocked" if blocked else "error", message="; ".join(dict.fromkeys(map(diagnostic_label, diagnostics))) + "; no current offer verified")
         else:
             summary.update(status="no_match", message="No exact alternate-art EB05-010 listing found in bounded search")
     except requests.HTTPError as error:
         code = error.response.status_code if error.response is not None else None
+        diagnostics.append(failure_diagnostic(error, "currency", store["url"] + "/cart.js"))
         summary.update(status="blocked" if code in (401, 403, 429) else "error", message=f"Public store check unavailable (HTTP {code}); price/stock unverified")
     except (requests.RequestException, ValueError, TypeError, KeyError) as error:
         # Do not expose response bodies, cookies, proxy details or credentials.
+        diagnostics.append(failure_diagnostic(error, "currency", store["url"] + "/cart.js"))
         summary.update(status="error", message=f"Public store check unavailable ({type(error).__name__}); CAD price/stock unverified")
     summary["requests"] = client.requests
     return summary, offers
@@ -285,10 +309,12 @@ def run(config, previous=None, now=None, client_factory=StoreClient):
     threshold = Decimal(str(watch["threshold"]))
     if watch.get("currency") != "CAD" or threshold != Decimal("50"):
         raise ValueError("This watch requires strict under-CA$50 pricing")
-    existing = {offer["id"]: offer for offer in previous.get("offers", [])}
+    # If a matching rule is tightened, don't retain known wrong-art variants as
+    # historical offers or actionable historical alerts in this watchlist.
+    existing = {offer["id"]: offer for offer in previous.get("offers", []) if exact_card(offer) and variant_ok({"title": offer.get("variant", "")})}
     offers = {}
     stores = []
-    alerts = deepcopy(previous.get("alerts", []))
+    alerts = deepcopy([alert for alert in previous.get("alerts", []) if alert.get("offerId") in existing])
     alert_ids = {alert["id"] for alert in alerts}
     settings = config.get("settings", {})
     for store in config["stores"]:

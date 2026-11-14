@@ -79,6 +79,9 @@ class PriceWatchTests(unittest.TestCase):
             TITLE.replace("Alternate Art", "Regular Art"),
             TITLE + " Japanese", TITLE + " PSA 10", TITLE + " (SP)",
             TITLE + " Non-Foil", TITLE + " Playset", TITLE + " Manga",
+            TITLE.replace("Alternate Art", "Super Leader Alternate Art"),
+            TITLE.replace("Alternate Art", "Super Alt Art"),
+            TITLE + " Serialized", TITLE + " Signature", TITLE + " Signed",
         ]:
             with self.subTest(title=bad):
                 self.assertFalse(exact_card({"title": bad}))
@@ -128,6 +131,33 @@ class PriceWatchTests(unittest.TestCase):
         self.assertEqual((offers[0]["price"], offers[0]["inStock"]), (49, True))
         self.assertEqual((offers[1]["price"], offers[1]["inStock"]), (35, False))
         self.assertEqual(offers_from_product(self.config["stores"][0], self.base, product, "USD", NOW), [])
+
+    def test_bad_price_variant_does_not_discard_valid_variant_and_reports_safe_diagnostic(self):
+        product = FixtureHandler.routes["/products/robin.js"][1]
+        product["variants"].insert(0, {"id": 12, "title": "Damaged Foil", "price": 0, "available": True})
+        result = run(self.config, now=NOW)
+        self.assertEqual(result["meta"]["matchingOffers"], 1)
+        self.assertEqual(len(result["offers"]), 2)
+        self.assertEqual(result["stores"][0]["status"], "ok")
+        diagnostic = result["stores"][0]["diagnostics"][0]
+        self.assertEqual((diagnostic["stage"], diagnostic["path"], diagnostic["variantId"], diagnostic["errorType"]), ("variant", "/products/robin.js", "12", "InvalidPrice"))
+
+    def test_product_http_failure_diagnostic_identifies_public_path_and_status(self):
+        FixtureHandler.routes["/products/robin.js"] = (404, {"private": "MUST_NOT_BE_EXPOSED"})
+        result = run(self.config, now=NOW)
+        diagnostic = result["stores"][0]["diagnostics"][0]
+        self.assertEqual((diagnostic["stage"], diagnostic["path"], diagnostic["httpStatus"], diagnostic["errorType"]), ("product", "/products/robin.js", 404, "HTTPError"))
+        self.assertNotIn("MUST_NOT_BE_EXPOSED", json.dumps(result))
+        self.assertEqual(result["stores"][0]["status"], "error")
+
+    def test_wrong_art_old_offers_are_removed_when_matching_rules_are_tightened(self):
+        first = run(self.config, now=NOW)
+        first["offers"][0]["title"] = TITLE.replace("Alternate Art", "Super Leader Alternate Art")
+        wrong_id = first["offers"][0]["id"]
+        FixtureHandler.routes["/cart.js"] = (403, {})
+        second = run(self.config, first, now=LATER)
+        self.assertNotIn(wrong_id, [offer["id"] for offer in second["offers"]])
+        self.assertTrue(all(alert["offerId"] != wrong_id for alert in second["alerts"]))
 
     def test_actual_http_discovery_currency_and_direct_url_deduplication(self):
         result = run(self.config, now=NOW)
