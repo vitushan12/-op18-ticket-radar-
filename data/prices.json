@@ -15,7 +15,7 @@
     "priceBasis": "Card price before shipping and tax; only confirmed in-stock variants count."
   },
   "meta": {
-    "lastChecked": "2026-11-19T01:27:24+00:00",
+    "lastChecked": "2026-11-19T09:28:32+00:00",
     "successfulStores": 7,
     "totalStores": 8,
     "matchingOffers": 0,
@@ -28,7 +28,7 @@
       "id": "enter-the-battlefield",
       "name": "Enter The Battlefield",
       "url": "https://enterthebattlefield.ca",
-      "checkedAt": "2026-11-19T01:27:24+00:00",
+      "checkedAt": "2026-11-19T09:28:32+00:00",
       "status": "ok",
       "message": "CAD and exact card variants verified (4 variant(s)); 1 other listing/variant check(s) could not be verified",
       "offers": [
@@ -52,7 +52,7 @@
       "id": "401-games",
       "name": "401 Games",
       "url": "https://store.401games.ca",
-      "checkedAt": "2026-11-19T01:27:24+00:00",
+      "checkedAt": "2026-11-19T09:28:32+00:00",
       "status": "ok",
       "message": "CAD and exact card variants verified (2 variant(s))",
       "offers": [
@@ -66,7 +66,7 @@
       "id": "face-to-face",
       "name": "Face to Face Games",
       "url": "https://facetofacegames.com",
-      "checkedAt": "2026-11-19T01:27:24+00:00",
+      "checkedAt": "2026-11-19T09:28:32+00:00",
       "status": "no_match",
       "message": "No exact alternate-art EB05-010 listing found in bounded search",
       "offers": [],
@@ -77,7 +77,7 @@
       "id": "hobbiesville",
       "name": "Hobbiesville",
       "url": "https://hobbiesville.com",
-      "checkedAt": "2026-11-19T01:27:24+00:00",
+      "checkedAt": "2026-11-19T09:28:32+00:00",
       "status": "ok",
       "message": "CAD and exact card variants verified (3 variant(s))",
       "offers": [
@@ -92,7 +92,7 @@
       "id": "kanzen-games",
       "name": "Kanzen Games",
       "url": "https://kanzengames.com",
-      "checkedAt": "2026-11-19T01:27:24+00:00",
+      "checkedAt": "2026-11-19T09:28:32+00:00",
       "status": "no_match",
       "message": "No exact alternate-art EB05-010 listing found in bounded search",
       "offers": [],
@@ -103,7 +103,7 @@
       "id": "deck-out-gaming",
       "name": "Deck Out Gaming",
       "url": "https://deckoutgaming.ca",
-      "checkedAt": "2026-11-19T01:27:24+00:00",
+      "checkedAt": "2026-11-19T09:28:32+00:00",
       "status": "ok",
       "message": "CAD and exact card variants verified (4 variant(s))",
       "offers": [
@@ -119,7 +119,7 @@
       "id": "hairy-tarantula",
       "name": "Hairy Tarantula",
       "url": "https://hairyt.com",
-      "checkedAt": "2026-11-19T01:27:24+00:00",
+      "checkedAt": "2026-11-19T09:28:32+00:00",
       "status": "no_match",
       "message": "No exact alternate-art EB05-010 listing found in bounded search",
       "offers": [],
@@ -130,7 +130,7 @@
       "id": "dollys",
       "name": "Dolly's",
       "url": "https://dollys.ca",
-      "checkedAt": "2026-11-19T01:27:24+00:00",
+      "checkedAt": "2026-11-19T09:28:32+00:00",
       "status": "error",
       "message": "Public store check unavailable (HTTP 404); price/stock unverified",
       "offers": [],
@@ -158,14 +158,14 @@
       "price": 57.5,
       "inStock": true,
       "firstSeen": "2026-11-14T13:01:20+00:00",
-      "lastSeen": "2026-11-19T01:27:24+00:00",
+      "lastSeen": "2026-11-19T09:28:32+00:00",
       "stale": false,
       "image": "//cdn.shopify.com/s/files/1/0496/0098/7297/files/722644_2f837d62-ca7d-4ee1-8029-b2f29584e61d.jpg?v=1793846009",
       "eligible": true,
       "belowThreshold": false,
-      "previousPrice": 57.0,
+      "previousPrice": 57.5,
       "minPrice": 57.0,
-      "changed": true,
+      "changed": false,
       "dropAmount": null,
       "history": [
         {
@@ -257,6 +257,11 @@
           "checkedAt": "2026-11-19T01:27:24+00:00",
           "price": 57.5,
           "inStock": true
+        },
+        {
+          "checkedAt": "2026-11-19T09:28:32+00:00",
+          "price": 57.5,
+          "inStock": true
         }
       ]
     },
@@ -271,14 +276,14 @@
       "price": 11.5,
       "inStock": false,
       "firstSeen": "2026-11-14T13:01:20+00:00",
-      "lastSeen": "2026-11-19T01:27:24+00:00",
+      "lastSeen": "2026-11-19T09:28:32+00:00",
       "stale": false,
       "image": "//cdn.shopify.com/s/files/1/0496/0098/7297/files/722644_2f837d62-ca7d-4ee1-8029-b2f29584e61d.jpg?v=1793846009",
       "eligible": false,
       "belowThreshold": false,
-      "previousPrice": 11.4,
+      "previousPrice": 11.5,
       "minPrice": 11.4,
-      "changed": true,
+      "changed": false,
       "dropAmount": null,
       "history": [
         {
@@ -370,6 +375,11 @@
           "checkedAt": "2026-11-19T01:27:24+00:00",
           "price": 11.5,
           "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-19T09:28:32+00:00",
+          "price": 11.5,
+          "inStock": false
         }
       ]
     },
@@ -384,14 +394,14 @@
       "price": 28.75,
       "inStock": false,
       "firstSeen": "2026-11-14T13:01:20+00:00",
-      "lastSeen": "2026-11-19T01:27:24+00:00",
+      "lastSeen": "2026-11-19T09:28:32+00:00",
       "stale": false,
       "image": "//cdn.shopify.com/s/files/1/0496/0098/7297/files/722644_2f837d62-ca7d-4ee1-8029-b2f29584e61d.jpg?v=1793846009",
       "eligible": false,
       "belowThreshold": false,
-      "previousPrice": 28.5,
+      "previousPrice": 28.75,
       "minPrice": 28.5,
-      "changed": true,
+      "changed": false,
       "dropAmount": null,
       "history": [
         {
@@ -483,6 +493,11 @@
           "checkedAt": "2026-11-19T01:27:24+00:00",
           "price": 28.75,
           "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-19T09:28:32+00:00",
+          "price": 28.75,
+          "inStock": false
         }
       ]
     },
@@ -494,17 +509,17 @@
       "condition": "Heavily Played",
       "url": "https://deckoutgaming.ca/products/nico-robin-010-alternate-art-eb05-010-extra-booster-one-piece-heroines-edition-vol-2-foil?variant=56883025314164",
       "currency": "CAD",
-      "price": 28.89,
+      "price": 29.3,
       "inStock": false,
       "firstSeen": "2026-11-17T11:43:28+00:00",
-      "lastSeen": "2026-11-19T01:27:24+00:00",
+      "lastSeen": "2026-11-19T09:28:32+00:00",
       "stale": false,
       "image": "//cdn.shopify.com/s/files/1/0320/2059/4827/files/722644.jpg?v=1794852850",
       "eligible": false,
       "belowThreshold": false,
       "previousPrice": 28.89,
       "minPrice": 28.89,
-      "changed": false,
+      "changed": true,
       "dropAmount": null,
       "history": [
         {
@@ -536,6 +551,11 @@
           "checkedAt": "2026-11-19T01:27:24+00:00",
           "price": 28.89,
           "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-19T09:28:32+00:00",
+          "price": 29.3,
+          "inStock": false
         }
       ]
     },
@@ -550,14 +570,14 @@
       "price": 33.96,
       "inStock": false,
       "firstSeen": "2026-11-18T02:51:27+00:00",
-      "lastSeen": "2026-11-19T01:27:24+00:00",
+      "lastSeen": "2026-11-19T09:28:32+00:00",
       "stale": false,
       "image": "//cdn.shopify.com/s/files/1/0261/9795/0486/files/722644_6e94c0e9-c092-4e8e-97ee-d2b8167bfefc.jpg?v=1794281062",
       "eligible": false,
       "belowThreshold": false,
-      "previousPrice": 33.64,
+      "previousPrice": 33.96,
       "minPrice": 33.64,
-      "changed": true,
+      "changed": false,
       "dropAmount": null,
       "history": [
         {
@@ -579,6 +599,11 @@
           "checkedAt": "2026-11-19T01:27:24+00:00",
           "price": 33.96,
           "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-19T09:28:32+00:00",
+          "price": 33.96,
+          "inStock": false
         }
       ]
     },
@@ -593,18 +618,23 @@
       "price": 35.75,
       "inStock": false,
       "firstSeen": "2026-11-19T01:27:24+00:00",
-      "lastSeen": "2026-11-19T01:27:24+00:00",
+      "lastSeen": "2026-11-19T09:28:32+00:00",
       "stale": false,
       "image": "//cdn.shopify.com/s/files/1/1704/1809/files/722644_in_1000x1000_b3ad6135-ce0d-49f7-be32-3942899747b0.jpg?v=1794334349",
       "eligible": false,
       "belowThreshold": false,
-      "previousPrice": null,
+      "previousPrice": 35.75,
       "minPrice": 35.75,
       "changed": false,
       "dropAmount": null,
       "history": [
         {
           "checkedAt": "2026-11-19T01:27:24+00:00",
+          "price": 35.75,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-19T09:28:32+00:00",
           "price": 35.75,
           "inStock": false
         }
@@ -621,14 +651,14 @@
       "price": 40.25,
       "inStock": false,
       "firstSeen": "2026-11-14T13:01:20+00:00",
-      "lastSeen": "2026-11-19T01:27:24+00:00",
+      "lastSeen": "2026-11-19T09:28:32+00:00",
       "stale": false,
       "image": "//cdn.shopify.com/s/files/1/0496/0098/7297/files/722644_2f837d62-ca7d-4ee1-8029-b2f29584e61d.jpg?v=1793846009",
       "eligible": false,
       "belowThreshold": false,
-      "previousPrice": 39.9,
+      "previousPrice": 40.25,
       "minPrice": 39.9,
-      "changed": true,
+      "changed": false,
       "dropAmount": null,
       "history": [
         {
@@ -720,6 +750,11 @@
           "checkedAt": "2026-11-19T01:27:24+00:00",
           "price": 40.25,
           "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-19T09:28:32+00:00",
+          "price": 40.25,
+          "inStock": false
         }
       ]
     },
@@ -731,17 +766,17 @@
       "condition": "Moderately Played",
       "url": "https://deckoutgaming.ca/products/nico-robin-010-alternate-art-eb05-010-extra-booster-one-piece-heroines-edition-vol-2-foil?variant=56883025281396",
       "currency": "CAD",
-      "price": 40.45,
+      "price": 41.01,
       "inStock": false,
       "firstSeen": "2026-11-17T11:43:28+00:00",
-      "lastSeen": "2026-11-19T01:27:24+00:00",
+      "lastSeen": "2026-11-19T09:28:32+00:00",
       "stale": false,
       "image": "//cdn.shopify.com/s/files/1/0320/2059/4827/files/722644.jpg?v=1794852850",
       "eligible": false,
       "belowThreshold": false,
       "previousPrice": 40.45,
       "minPrice": 40.45,
-      "changed": false,
+      "changed": true,
       "dropAmount": null,
       "history": [
         {
@@ -773,6 +808,11 @@
           "checkedAt": "2026-11-19T01:27:24+00:00",
           "price": 40.45,
           "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-19T09:28:32+00:00",
+          "price": 41.01,
+          "inStock": false
         }
       ]
     },
@@ -787,14 +827,14 @@
       "price": 44.41,
       "inStock": false,
       "firstSeen": "2026-11-18T02:51:27+00:00",
-      "lastSeen": "2026-11-19T01:27:24+00:00",
+      "lastSeen": "2026-11-19T09:28:32+00:00",
       "stale": false,
       "image": "//cdn.shopify.com/s/files/1/0261/9795/0486/files/722644_6e94c0e9-c092-4e8e-97ee-d2b8167bfefc.jpg?v=1794281062",
       "eligible": false,
       "belowThreshold": false,
-      "previousPrice": 43.99,
+      "previousPrice": 44.41,
       "minPrice": 43.99,
-      "changed": true,
+      "changed": false,
       "dropAmount": null,
       "history": [
         {
@@ -816,6 +856,11 @@
           "checkedAt": "2026-11-19T01:27:24+00:00",
           "price": 44.41,
           "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-19T09:28:32+00:00",
+          "price": 44.41,
+          "inStock": false
         }
       ]
     },
@@ -827,17 +872,17 @@
       "condition": "Lightly Played",
       "url": "https://deckoutgaming.ca/products/nico-robin-010-alternate-art-eb05-010-extra-booster-one-piece-heroines-edition-vol-2-foil?variant=56883025248628",
       "currency": "CAD",
-      "price": 49.12,
+      "price": 49.8,
       "inStock": false,
       "firstSeen": "2026-11-17T11:43:28+00:00",
-      "lastSeen": "2026-11-19T01:27:24+00:00",
+      "lastSeen": "2026-11-19T09:28:32+00:00",
       "stale": false,
       "image": "//cdn.shopify.com/s/files/1/0320/2059/4827/files/722644.jpg?v=1794852850",
       "eligible": false,
       "belowThreshold": false,
       "previousPrice": 49.12,
       "minPrice": 49.12,
-      "changed": false,
+      "changed": true,
       "dropAmount": null,
       "history": [
         {
@@ -869,6 +914,11 @@
           "checkedAt": "2026-11-19T01:27:24+00:00",
           "price": 49.12,
           "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-19T09:28:32+00:00",
+          "price": 49.8,
+          "inStock": false
         }
       ]
     },
@@ -883,14 +933,14 @@
       "price": 52.25,
       "inStock": false,
       "firstSeen": "2026-11-18T02:51:27+00:00",
-      "lastSeen": "2026-11-19T01:27:24+00:00",
+      "lastSeen": "2026-11-19T09:28:32+00:00",
       "stale": false,
       "image": "//cdn.shopify.com/s/files/1/0261/9795/0486/files/722644_6e94c0e9-c092-4e8e-97ee-d2b8167bfefc.jpg?v=1794281062",
       "eligible": false,
       "belowThreshold": false,
-      "previousPrice": 51.75,
+      "previousPrice": 52.25,
       "minPrice": 51.75,
-      "changed": true,
+      "changed": false,
       "dropAmount": null,
       "history": [
         {
@@ -912,6 +962,11 @@
           "checkedAt": "2026-11-19T01:27:24+00:00",
           "price": 52.25,
           "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-19T09:28:32+00:00",
+          "price": 52.25,
+          "inStock": false
         }
       ]
     },
@@ -926,7 +981,7 @@
       "price": 55.0,
       "inStock": false,
       "firstSeen": "2026-11-14T12:58:06+00:00",
-      "lastSeen": "2026-11-19T01:27:24+00:00",
+      "lastSeen": "2026-11-19T09:28:32+00:00",
       "stale": false,
       "image": "//cdn.shopify.com/s/files/1/1704/1809/files/722644_in_1000x1000_b3ad6135-ce0d-49f7-be32-3942899747b0.jpg?v=1794334349",
       "eligible": false,
@@ -1030,6 +1085,11 @@
           "checkedAt": "2026-11-19T01:27:24+00:00",
           "price": 55.0,
           "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-19T09:28:32+00:00",
+          "price": 55.0,
+          "inStock": false
         }
       ]
     },
@@ -1041,17 +1101,17 @@
       "condition": "Near Mint",
       "url": "https://deckoutgaming.ca/products/nico-robin-010-alternate-art-eb05-010-extra-booster-one-piece-heroines-edition-vol-2-foil?variant=56883025215860",
       "currency": "CAD",
-      "price": 57.79,
+      "price": 58.59,
       "inStock": false,
       "firstSeen": "2026-11-17T11:43:28+00:00",
-      "lastSeen": "2026-11-19T01:27:24+00:00",
+      "lastSeen": "2026-11-19T09:28:32+00:00",
       "stale": false,
       "image": "//cdn.shopify.com/s/files/1/0320/2059/4827/files/722644.jpg?v=1794852850",
       "eligible": false,
       "belowThreshold": false,
       "previousPrice": 57.79,
       "minPrice": 57.79,
-      "changed": false,
+      "changed": true,
       "dropAmount": null,
       "history": [
         {
@@ -1082,6 +1142,11 @@
         {
           "checkedAt": "2026-11-19T01:27:24+00:00",
           "price": 57.79,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-19T09:28:32+00:00",
+          "price": 58.59,
           "inStock": false
         }
       ]
