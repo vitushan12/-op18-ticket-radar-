@@ -15,7 +15,7 @@
     "priceBasis": "Card price before shipping and tax; only confirmed in-stock variants count."
   },
   "meta": {
-    "lastChecked": "2026-11-28T04:56:41+00:00",
+    "lastChecked": "2026-11-28T14:06:58+00:00",
     "successfulStores": 7,
     "totalStores": 8,
     "matchingOffers": 0,
@@ -28,7 +28,7 @@
       "id": "enter-the-battlefield",
       "name": "Enter The Battlefield",
       "url": "https://enterthebattlefield.ca",
-      "checkedAt": "2026-11-28T04:56:41+00:00",
+      "checkedAt": "2026-11-28T14:06:58+00:00",
       "status": "ok",
       "message": "CAD and exact card variants verified (4 variant(s)); 1 other listing/variant check(s) could not be verified",
       "offers": [
@@ -52,7 +52,7 @@
       "id": "401-games",
       "name": "401 Games",
       "url": "https://store.401games.ca",
-      "checkedAt": "2026-11-28T04:56:41+00:00",
+      "checkedAt": "2026-11-28T14:06:58+00:00",
       "status": "ok",
       "message": "CAD and exact card variants verified (2 variant(s))",
       "offers": [
@@ -66,7 +66,7 @@
       "id": "face-to-face",
       "name": "Face to Face Games",
       "url": "https://facetofacegames.com",
-      "checkedAt": "2026-11-28T04:56:41+00:00",
+      "checkedAt": "2026-11-28T14:06:58+00:00",
       "status": "no_match",
       "message": "No exact alternate-art EB05-010 listing found in bounded search",
       "offers": [],
@@ -77,7 +77,7 @@
       "id": "hobbiesville",
       "name": "Hobbiesville",
       "url": "https://hobbiesville.com",
-      "checkedAt": "2026-11-28T04:56:41+00:00",
+      "checkedAt": "2026-11-28T14:06:58+00:00",
       "status": "ok",
       "message": "CAD and exact card variants verified (3 variant(s))",
       "offers": [
@@ -92,7 +92,7 @@
       "id": "kanzen-games",
       "name": "Kanzen Games",
       "url": "https://kanzengames.com",
-      "checkedAt": "2026-11-28T04:56:41+00:00",
+      "checkedAt": "2026-11-28T14:06:58+00:00",
       "status": "no_match",
       "message": "No exact alternate-art EB05-010 listing found in bounded search",
       "offers": [],
@@ -103,7 +103,7 @@
       "id": "deck-out-gaming",
       "name": "Deck Out Gaming",
       "url": "https://deckoutgaming.ca",
-      "checkedAt": "2026-11-28T04:56:41+00:00",
+      "checkedAt": "2026-11-28T14:06:58+00:00",
       "status": "ok",
       "message": "CAD and exact card variants verified (4 variant(s))",
       "offers": [
@@ -119,7 +119,7 @@
       "id": "hairy-tarantula",
       "name": "Hairy Tarantula",
       "url": "https://hairyt.com",
-      "checkedAt": "2026-11-28T04:56:41+00:00",
+      "checkedAt": "2026-11-28T14:06:58+00:00",
       "status": "no_match",
       "message": "No exact alternate-art EB05-010 listing found in bounded search",
       "offers": [],
@@ -130,16 +130,15 @@
       "id": "dollys",
       "name": "Dolly's",
       "url": "https://dollys.ca",
-      "checkedAt": "2026-11-28T04:56:41+00:00",
+      "checkedAt": "2026-11-28T14:06:58+00:00",
       "status": "error",
-      "message": "Public store check unavailable (HTTP 404); price/stock unverified",
+      "message": "Public store check unavailable (SSLError); CAD price/stock unverified",
       "offers": [],
       "diagnostics": [
         {
           "stage": "currency",
           "path": "/cart.js",
-          "errorType": "HTTPError",
-          "httpStatus": 404,
+          "errorType": "SSLError",
           "message": "Public endpoint could not be verified"
         }
       ],
@@ -155,17 +154,17 @@
       "condition": "Heavily Played",
       "url": "https://enterthebattlefield.ca/products/nico-robin-010-alternate-art-eb05-010-extra-booster-one-piece-heroines-edition-vol-2-foil?variant=48123606827179",
       "currency": "CAD",
-      "price": 10.0,
+      "price": 10.7,
       "inStock": false,
       "firstSeen": "2026-11-14T13:01:20+00:00",
-      "lastSeen": "2026-11-28T04:56:41+00:00",
+      "lastSeen": "2026-11-28T14:06:58+00:00",
       "stale": false,
       "image": "//cdn.shopify.com/s/files/1/0496/0098/7297/files/722644_2f837d62-ca7d-4ee1-8029-b2f29584e61d.jpg?v=1793846009",
       "eligible": false,
       "belowThreshold": false,
       "previousPrice": 10.0,
       "minPrice": 10.0,
-      "changed": false,
+      "changed": true,
       "dropAmount": null,
       "history": [
         {
@@ -397,198 +396,10 @@
           "checkedAt": "2026-11-28T04:56:41+00:00",
           "price": 10.0,
           "inStock": false
-        }
-      ]
-    },
-    {
-      "id": "c6201f7119631c3caf53",
-      "storeId": "deck-out-gaming",
-      "title": "Nico Robin (010) (Alternate Art) (EB05-010) [Extra Booster: One Piece Heroines Edition Vol. 2] Foil",
-      "variant": "Heavily Played",
-      "condition": "Heavily Played",
-      "url": "https://deckoutgaming.ca/products/nico-robin-010-alternate-art-eb05-010-extra-booster-one-piece-heroines-edition-vol-2-foil?variant=56883025314164",
-      "currency": "CAD",
-      "price": 24.59,
-      "inStock": false,
-      "firstSeen": "2026-11-17T11:43:28+00:00",
-      "lastSeen": "2026-11-28T04:56:41+00:00",
-      "stale": false,
-      "image": "//cdn.shopify.com/s/files/1/0320/2059/4827/files/722644.jpg?v=1794852850",
-      "eligible": false,
-      "belowThreshold": false,
-      "previousPrice": 24.59,
-      "minPrice": 24.59,
-      "changed": false,
-      "dropAmount": null,
-      "history": [
-        {
-          "checkedAt": "2026-11-17T11:43:28+00:00",
-          "price": 29.64,
-          "inStock": false
         },
         {
-          "checkedAt": "2026-11-17T20:49:14+00:00",
-          "price": 29.64,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-18T02:51:27+00:00",
-          "price": 28.89,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-18T11:30:24+00:00",
-          "price": 28.89,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-18T19:34:18+00:00",
-          "price": 28.89,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-19T01:27:24+00:00",
-          "price": 28.89,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-19T09:28:32+00:00",
-          "price": 29.3,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-19T18:38:44+00:00",
-          "price": 29.3,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-20T00:54:00+00:00",
-          "price": 29.3,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-20T08:27:43+00:00",
-          "price": 28.8,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-20T17:15:03+00:00",
-          "price": 28.8,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-20T23:19:38+00:00",
-          "price": 28.8,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-21T04:16:04+00:00",
-          "price": 28.39,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-21T12:58:34+00:00",
-          "price": 28.39,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-21T20:03:33+00:00",
-          "price": 28.39,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-22T00:17:42+00:00",
-          "price": 28.39,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-22T07:25:12+00:00",
-          "price": 27.5,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-22T15:39:18+00:00",
-          "price": 27.5,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-22T21:14:48+00:00",
-          "price": 27.5,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-23T01:57:27+00:00",
-          "price": 27.34,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-23T10:40:25+00:00",
-          "price": 27.34,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-23T22:13:45+00:00",
-          "price": 27.34,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-24T06:21:39+00:00",
-          "price": 27.34,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-24T18:15:48+00:00",
-          "price": 26.84,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-25T02:45:28+00:00",
-          "price": 26.84,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-25T12:42:25+00:00",
-          "price": 26.84,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-25T21:58:44+00:00",
-          "price": 26.84,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-26T04:06:30+00:00",
-          "price": 26.45,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-26T13:48:26+00:00",
-          "price": 26.45,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-26T22:56:15+00:00",
-          "price": 26.45,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-27T04:57:04+00:00",
-          "price": 24.59,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-27T14:57:11+00:00",
-          "price": 24.59,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-27T23:24:14+00:00",
-          "price": 24.59,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-28T04:56:41+00:00",
-          "price": 24.59,
+          "checkedAt": "2026-11-28T14:06:58+00:00",
+          "price": 10.7,
           "inStock": false
         }
       ]
@@ -601,17 +412,17 @@
       "condition": "Moderately Played",
       "url": "https://enterthebattlefield.ca/products/nico-robin-010-alternate-art-eb05-010-extra-booster-one-piece-heroines-edition-vol-2-foil?variant=48123606794411",
       "currency": "CAD",
-      "price": 25.0,
+      "price": 26.75,
       "inStock": false,
       "firstSeen": "2026-11-14T13:01:20+00:00",
-      "lastSeen": "2026-11-28T04:56:41+00:00",
+      "lastSeen": "2026-11-28T14:06:58+00:00",
       "stale": false,
       "image": "//cdn.shopify.com/s/files/1/0496/0098/7297/files/722644_2f837d62-ca7d-4ee1-8029-b2f29584e61d.jpg?v=1793846009",
       "eligible": false,
       "belowThreshold": false,
       "previousPrice": 25.0,
       "minPrice": 25.0,
-      "changed": false,
+      "changed": true,
       "dropAmount": null,
       "history": [
         {
@@ -842,6 +653,209 @@
         {
           "checkedAt": "2026-11-28T04:56:41+00:00",
           "price": 25.0,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-28T14:06:58+00:00",
+          "price": 26.75,
+          "inStock": false
+        }
+      ]
+    },
+    {
+      "id": "c6201f7119631c3caf53",
+      "storeId": "deck-out-gaming",
+      "title": "Nico Robin (010) (Alternate Art) (EB05-010) [Extra Booster: One Piece Heroines Edition Vol. 2] Foil",
+      "variant": "Heavily Played",
+      "condition": "Heavily Played",
+      "url": "https://deckoutgaming.ca/products/nico-robin-010-alternate-art-eb05-010-extra-booster-one-piece-heroines-edition-vol-2-foil?variant=56883025314164",
+      "currency": "CAD",
+      "price": 27.05,
+      "inStock": false,
+      "firstSeen": "2026-11-17T11:43:28+00:00",
+      "lastSeen": "2026-11-28T14:06:58+00:00",
+      "stale": false,
+      "image": "//cdn.shopify.com/s/files/1/0320/2059/4827/files/722644.jpg?v=1794852850",
+      "eligible": false,
+      "belowThreshold": false,
+      "previousPrice": 24.59,
+      "minPrice": 24.59,
+      "changed": true,
+      "dropAmount": null,
+      "history": [
+        {
+          "checkedAt": "2026-11-17T11:43:28+00:00",
+          "price": 29.64,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-17T20:49:14+00:00",
+          "price": 29.64,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-18T02:51:27+00:00",
+          "price": 28.89,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-18T11:30:24+00:00",
+          "price": 28.89,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-18T19:34:18+00:00",
+          "price": 28.89,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-19T01:27:24+00:00",
+          "price": 28.89,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-19T09:28:32+00:00",
+          "price": 29.3,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-19T18:38:44+00:00",
+          "price": 29.3,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-20T00:54:00+00:00",
+          "price": 29.3,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-20T08:27:43+00:00",
+          "price": 28.8,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-20T17:15:03+00:00",
+          "price": 28.8,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-20T23:19:38+00:00",
+          "price": 28.8,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-21T04:16:04+00:00",
+          "price": 28.39,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-21T12:58:34+00:00",
+          "price": 28.39,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-21T20:03:33+00:00",
+          "price": 28.39,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-22T00:17:42+00:00",
+          "price": 28.39,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-22T07:25:12+00:00",
+          "price": 27.5,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-22T15:39:18+00:00",
+          "price": 27.5,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-22T21:14:48+00:00",
+          "price": 27.5,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-23T01:57:27+00:00",
+          "price": 27.34,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-23T10:40:25+00:00",
+          "price": 27.34,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-23T22:13:45+00:00",
+          "price": 27.34,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-24T06:21:39+00:00",
+          "price": 27.34,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-24T18:15:48+00:00",
+          "price": 26.84,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-25T02:45:28+00:00",
+          "price": 26.84,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-25T12:42:25+00:00",
+          "price": 26.84,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-25T21:58:44+00:00",
+          "price": 26.84,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-26T04:06:30+00:00",
+          "price": 26.45,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-26T13:48:26+00:00",
+          "price": 26.45,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-26T22:56:15+00:00",
+          "price": 26.45,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-27T04:57:04+00:00",
+          "price": 24.59,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-27T14:57:11+00:00",
+          "price": 24.59,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-27T23:24:14+00:00",
+          "price": 24.59,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-28T04:56:41+00:00",
+          "price": 24.59,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-28T14:06:58+00:00",
+          "price": 27.05,
           "inStock": false
         }
       ]
@@ -857,7 +871,7 @@
       "price": 28.6,
       "inStock": false,
       "firstSeen": "2026-11-18T02:51:27+00:00",
-      "lastSeen": "2026-11-28T04:56:41+00:00",
+      "lastSeen": "2026-11-28T14:06:58+00:00",
       "stale": false,
       "image": "//cdn.shopify.com/s/files/1/0261/9795/0486/files/722644_6e94c0e9-c092-4e8e-97ee-d2b8167bfefc.jpg?v=1794281062",
       "eligible": false,
@@ -1026,6 +1040,11 @@
           "checkedAt": "2026-11-28T04:56:41+00:00",
           "price": 28.6,
           "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-28T14:06:58+00:00",
+          "price": 28.6,
+          "inStock": false
         }
       ]
     },
@@ -1040,7 +1059,7 @@
       "price": 31.85,
       "inStock": false,
       "firstSeen": "2026-11-19T01:27:24+00:00",
-      "lastSeen": "2026-11-28T04:56:41+00:00",
+      "lastSeen": "2026-11-28T14:06:58+00:00",
       "stale": false,
       "image": "//cdn.shopify.com/s/files/1/1704/1809/files/722644_in_1000x1000_b3ad6135-ce0d-49f7-be32-3942899747b0.jpg?v=1794334349",
       "eligible": false,
@@ -1194,198 +1213,198 @@
           "checkedAt": "2026-11-28T04:56:41+00:00",
           "price": 31.85,
           "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-28T14:06:58+00:00",
+          "price": 31.85,
+          "inStock": false
         }
       ]
     },
     {
-      "id": "059b1f5a8d6ec7f2b253",
-      "storeId": "deck-out-gaming",
-      "title": "Nico Robin (010) (Alternate Art) (EB05-010) [Extra Booster: One Piece Heroines Edition Vol. 2] Foil",
-      "variant": "Moderately Played",
-      "condition": "Moderately Played",
-      "url": "https://deckoutgaming.ca/products/nico-robin-010-alternate-art-eb05-010-extra-booster-one-piece-heroines-edition-vol-2-foil?variant=56883025281396",
+      "id": "7b1209d83f1271d5fdd1",
+      "storeId": "hobbiesville",
+      "title": "Nico Robin (010) (Alternate Art) (EB05-010) - Extra Booster: One Piece Heroines Edition Vol. 2 Foil",
+      "variant": "LP",
+      "condition": "LP",
+      "url": "https://hobbiesville.com/products/nico-robin-010-alternate-art-eb05-010-extra-booster-one-piece-heroines-edition-vol-2-foil?variant=50685878567050",
       "currency": "CAD",
-      "price": 34.43,
+      "price": 37.4,
       "inStock": false,
-      "firstSeen": "2026-11-17T11:43:28+00:00",
-      "lastSeen": "2026-11-28T04:56:41+00:00",
+      "firstSeen": "2026-11-18T02:51:27+00:00",
+      "lastSeen": "2026-11-28T14:06:58+00:00",
       "stale": false,
-      "image": "//cdn.shopify.com/s/files/1/0320/2059/4827/files/722644.jpg?v=1794852850",
+      "image": "//cdn.shopify.com/s/files/1/0261/9795/0486/files/722644_6e94c0e9-c092-4e8e-97ee-d2b8167bfefc.jpg?v=1794281062",
       "eligible": false,
       "belowThreshold": false,
-      "previousPrice": 34.43,
-      "minPrice": 34.43,
+      "previousPrice": 37.4,
+      "minPrice": 37.4,
       "changed": false,
       "dropAmount": null,
       "history": [
         {
-          "checkedAt": "2026-11-17T11:43:28+00:00",
-          "price": 41.5,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-17T20:49:14+00:00",
-          "price": 41.5,
-          "inStock": false
-        },
-        {
           "checkedAt": "2026-11-18T02:51:27+00:00",
-          "price": 40.45,
+          "price": 43.99,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-18T11:30:24+00:00",
-          "price": 40.45,
+          "price": 43.99,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-18T19:34:18+00:00",
-          "price": 40.45,
+          "price": 43.99,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-19T01:27:24+00:00",
-          "price": 40.45,
+          "price": 44.41,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-19T09:28:32+00:00",
-          "price": 41.01,
+          "price": 44.41,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-19T18:38:44+00:00",
-          "price": 41.01,
+          "price": 44.41,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-20T00:54:00+00:00",
-          "price": 41.01,
+          "price": 44.41,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-20T08:27:43+00:00",
-          "price": 40.31,
+          "price": 43.77,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-20T17:15:03+00:00",
-          "price": 40.31,
+          "price": 43.77,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-20T23:19:38+00:00",
-          "price": 40.31,
+          "price": 43.77,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-21T04:16:04+00:00",
-          "price": 39.75,
+          "price": 43.14,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-21T12:58:34+00:00",
-          "price": 39.75,
+          "price": 43.14,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-21T20:03:33+00:00",
-          "price": 39.75,
+          "price": 43.14,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-22T00:17:42+00:00",
-          "price": 39.75,
+          "price": 43.14,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-22T07:25:12+00:00",
-          "price": 38.49,
+          "price": 43.14,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-22T15:39:18+00:00",
-          "price": 38.49,
+          "price": 41.86,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-22T21:14:48+00:00",
-          "price": 38.49,
+          "price": 41.86,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-23T01:57:27+00:00",
-          "price": 38.28,
+          "price": 41.86,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-23T10:40:25+00:00",
-          "price": 38.28,
+          "price": 41.65,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-23T22:13:45+00:00",
-          "price": 38.28,
+          "price": 41.65,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-24T06:21:39+00:00",
-          "price": 38.28,
+          "price": 40.8,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-24T18:15:48+00:00",
-          "price": 37.58,
+          "price": 40.8,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-25T02:45:28+00:00",
-          "price": 37.58,
+          "price": 40.8,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-25T12:42:25+00:00",
-          "price": 37.58,
+          "price": 40.8,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-25T21:58:44+00:00",
-          "price": 37.58,
+          "price": 40.8,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-26T04:06:30+00:00",
-          "price": 37.02,
+          "price": 40.16,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-26T13:48:26+00:00",
-          "price": 37.02,
+          "price": 40.16,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-26T22:56:15+00:00",
-          "price": 37.02,
+          "price": 40.16,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-27T04:57:04+00:00",
-          "price": 34.43,
+          "price": 40.16,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-27T14:57:11+00:00",
-          "price": 34.43,
+          "price": 37.4,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-27T23:24:14+00:00",
-          "price": 34.43,
+          "price": 37.4,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-28T04:56:41+00:00",
-          "price": 34.43,
+          "price": 37.4,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-28T14:06:58+00:00",
+          "price": 37.4,
           "inStock": false
         }
       ]
@@ -1398,17 +1417,17 @@
       "condition": "Lightly Played",
       "url": "https://enterthebattlefield.ca/products/nico-robin-010-alternate-art-eb05-010-extra-booster-one-piece-heroines-edition-vol-2-foil?variant=48123606761643",
       "currency": "CAD",
-      "price": 35.0,
+      "price": 37.45,
       "inStock": false,
       "firstSeen": "2026-11-14T13:01:20+00:00",
-      "lastSeen": "2026-11-28T04:56:41+00:00",
+      "lastSeen": "2026-11-28T14:06:58+00:00",
       "stale": false,
       "image": "//cdn.shopify.com/s/files/1/0496/0098/7297/files/722644_2f837d62-ca7d-4ee1-8029-b2f29584e61d.jpg?v=1793846009",
       "eligible": false,
       "belowThreshold": false,
       "previousPrice": 35.0,
       "minPrice": 35.0,
-      "changed": false,
+      "changed": true,
       "dropAmount": null,
       "history": [
         {
@@ -1640,188 +1659,396 @@
           "checkedAt": "2026-11-28T04:56:41+00:00",
           "price": 35.0,
           "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-28T14:06:58+00:00",
+          "price": 37.45,
+          "inStock": false
         }
       ]
     },
     {
-      "id": "7b1209d83f1271d5fdd1",
+      "id": "059b1f5a8d6ec7f2b253",
+      "storeId": "deck-out-gaming",
+      "title": "Nico Robin (010) (Alternate Art) (EB05-010) [Extra Booster: One Piece Heroines Edition Vol. 2] Foil",
+      "variant": "Moderately Played",
+      "condition": "Moderately Played",
+      "url": "https://deckoutgaming.ca/products/nico-robin-010-alternate-art-eb05-010-extra-booster-one-piece-heroines-edition-vol-2-foil?variant=56883025281396",
+      "currency": "CAD",
+      "price": 37.86,
+      "inStock": false,
+      "firstSeen": "2026-11-17T11:43:28+00:00",
+      "lastSeen": "2026-11-28T14:06:58+00:00",
+      "stale": false,
+      "image": "//cdn.shopify.com/s/files/1/0320/2059/4827/files/722644.jpg?v=1794852850",
+      "eligible": false,
+      "belowThreshold": false,
+      "previousPrice": 34.43,
+      "minPrice": 34.43,
+      "changed": true,
+      "dropAmount": null,
+      "history": [
+        {
+          "checkedAt": "2026-11-17T11:43:28+00:00",
+          "price": 41.5,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-17T20:49:14+00:00",
+          "price": 41.5,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-18T02:51:27+00:00",
+          "price": 40.45,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-18T11:30:24+00:00",
+          "price": 40.45,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-18T19:34:18+00:00",
+          "price": 40.45,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-19T01:27:24+00:00",
+          "price": 40.45,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-19T09:28:32+00:00",
+          "price": 41.01,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-19T18:38:44+00:00",
+          "price": 41.01,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-20T00:54:00+00:00",
+          "price": 41.01,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-20T08:27:43+00:00",
+          "price": 40.31,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-20T17:15:03+00:00",
+          "price": 40.31,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-20T23:19:38+00:00",
+          "price": 40.31,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-21T04:16:04+00:00",
+          "price": 39.75,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-21T12:58:34+00:00",
+          "price": 39.75,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-21T20:03:33+00:00",
+          "price": 39.75,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-22T00:17:42+00:00",
+          "price": 39.75,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-22T07:25:12+00:00",
+          "price": 38.49,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-22T15:39:18+00:00",
+          "price": 38.49,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-22T21:14:48+00:00",
+          "price": 38.49,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-23T01:57:27+00:00",
+          "price": 38.28,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-23T10:40:25+00:00",
+          "price": 38.28,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-23T22:13:45+00:00",
+          "price": 38.28,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-24T06:21:39+00:00",
+          "price": 38.28,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-24T18:15:48+00:00",
+          "price": 37.58,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-25T02:45:28+00:00",
+          "price": 37.58,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-25T12:42:25+00:00",
+          "price": 37.58,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-25T21:58:44+00:00",
+          "price": 37.58,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-26T04:06:30+00:00",
+          "price": 37.02,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-26T13:48:26+00:00",
+          "price": 37.02,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-26T22:56:15+00:00",
+          "price": 37.02,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-27T04:57:04+00:00",
+          "price": 34.43,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-27T14:57:11+00:00",
+          "price": 34.43,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-27T23:24:14+00:00",
+          "price": 34.43,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-28T04:56:41+00:00",
+          "price": 34.43,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-28T14:06:58+00:00",
+          "price": 37.86,
+          "inStock": false
+        }
+      ]
+    },
+    {
+      "id": "77e1490db5b4b3c21e60",
       "storeId": "hobbiesville",
       "title": "Nico Robin (010) (Alternate Art) (EB05-010) - Extra Booster: One Piece Heroines Edition Vol. 2 Foil",
-      "variant": "LP",
-      "condition": "LP",
-      "url": "https://hobbiesville.com/products/nico-robin-010-alternate-art-eb05-010-extra-booster-one-piece-heroines-edition-vol-2-foil?variant=50685878567050",
+      "variant": "NM",
+      "condition": "NM",
+      "url": "https://hobbiesville.com/products/nico-robin-010-alternate-art-eb05-010-extra-booster-one-piece-heroines-edition-vol-2-foil?variant=50685878534282",
       "currency": "CAD",
-      "price": 37.4,
+      "price": 44.0,
       "inStock": false,
       "firstSeen": "2026-11-18T02:51:27+00:00",
-      "lastSeen": "2026-11-28T04:56:41+00:00",
+      "lastSeen": "2026-11-28T14:06:58+00:00",
       "stale": false,
       "image": "//cdn.shopify.com/s/files/1/0261/9795/0486/files/722644_6e94c0e9-c092-4e8e-97ee-d2b8167bfefc.jpg?v=1794281062",
       "eligible": false,
       "belowThreshold": false,
-      "previousPrice": 37.4,
-      "minPrice": 37.4,
+      "previousPrice": 44.0,
+      "minPrice": 44.0,
       "changed": false,
       "dropAmount": null,
       "history": [
         {
           "checkedAt": "2026-11-18T02:51:27+00:00",
-          "price": 43.99,
+          "price": 51.75,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-18T11:30:24+00:00",
-          "price": 43.99,
+          "price": 51.75,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-18T19:34:18+00:00",
-          "price": 43.99,
+          "price": 51.75,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-19T01:27:24+00:00",
-          "price": 44.41,
+          "price": 52.25,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-19T09:28:32+00:00",
-          "price": 44.41,
+          "price": 52.25,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-19T18:38:44+00:00",
-          "price": 44.41,
+          "price": 52.25,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-20T00:54:00+00:00",
-          "price": 44.41,
+          "price": 52.25,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-20T08:27:43+00:00",
-          "price": 43.77,
+          "price": 51.5,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-20T17:15:03+00:00",
-          "price": 43.77,
+          "price": 51.5,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-20T23:19:38+00:00",
-          "price": 43.77,
+          "price": 51.5,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-21T04:16:04+00:00",
-          "price": 43.14,
+          "price": 50.75,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-21T12:58:34+00:00",
-          "price": 43.14,
+          "price": 50.75,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-21T20:03:33+00:00",
-          "price": 43.14,
+          "price": 50.75,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-22T00:17:42+00:00",
-          "price": 43.14,
+          "price": 50.75,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-22T07:25:12+00:00",
-          "price": 43.14,
+          "price": 50.75,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-22T15:39:18+00:00",
-          "price": 41.86,
+          "price": 49.25,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-22T21:14:48+00:00",
-          "price": 41.86,
+          "price": 49.25,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-23T01:57:27+00:00",
-          "price": 41.86,
+          "price": 49.25,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-23T10:40:25+00:00",
-          "price": 41.65,
+          "price": 49.0,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-23T22:13:45+00:00",
-          "price": 41.65,
+          "price": 49.0,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-24T06:21:39+00:00",
-          "price": 40.8,
+          "price": 48.0,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-24T18:15:48+00:00",
-          "price": 40.8,
+          "price": 48.0,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-25T02:45:28+00:00",
-          "price": 40.8,
+          "price": 48.0,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-25T12:42:25+00:00",
-          "price": 40.8,
+          "price": 48.0,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-25T21:58:44+00:00",
-          "price": 40.8,
+          "price": 48.0,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-26T04:06:30+00:00",
-          "price": 40.16,
+          "price": 47.25,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-26T13:48:26+00:00",
-          "price": 40.16,
+          "price": 47.25,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-26T22:56:15+00:00",
-          "price": 40.16,
+          "price": 47.25,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-27T04:57:04+00:00",
-          "price": 40.16,
+          "price": 47.25,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-27T14:57:11+00:00",
-          "price": 37.4,
+          "price": 44.0,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-27T23:24:14+00:00",
-          "price": 37.4,
+          "price": 44.0,
           "inStock": false
         },
         {
           "checkedAt": "2026-11-28T04:56:41+00:00",
-          "price": 37.4,
+          "price": 44.0,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-28T14:06:58+00:00",
+          "price": 44.0,
           "inStock": false
         }
       ]
@@ -1834,17 +2061,17 @@
       "condition": "Lightly Played",
       "url": "https://deckoutgaming.ca/products/nico-robin-010-alternate-art-eb05-010-extra-booster-one-piece-heroines-edition-vol-2-foil?variant=56883025248628",
       "currency": "CAD",
-      "price": 41.81,
+      "price": 45.98,
       "inStock": false,
       "firstSeen": "2026-11-17T11:43:28+00:00",
-      "lastSeen": "2026-11-28T04:56:41+00:00",
+      "lastSeen": "2026-11-28T14:06:58+00:00",
       "stale": false,
       "image": "//cdn.shopify.com/s/files/1/0320/2059/4827/files/722644.jpg?v=1794852850",
       "eligible": false,
       "belowThreshold": false,
       "previousPrice": 41.81,
       "minPrice": 41.81,
-      "changed": false,
+      "changed": true,
       "dropAmount": null,
       "history": [
         {
@@ -2016,188 +2243,10 @@
           "checkedAt": "2026-11-28T04:56:41+00:00",
           "price": 41.81,
           "inStock": false
-        }
-      ]
-    },
-    {
-      "id": "77e1490db5b4b3c21e60",
-      "storeId": "hobbiesville",
-      "title": "Nico Robin (010) (Alternate Art) (EB05-010) - Extra Booster: One Piece Heroines Edition Vol. 2 Foil",
-      "variant": "NM",
-      "condition": "NM",
-      "url": "https://hobbiesville.com/products/nico-robin-010-alternate-art-eb05-010-extra-booster-one-piece-heroines-edition-vol-2-foil?variant=50685878534282",
-      "currency": "CAD",
-      "price": 44.0,
-      "inStock": false,
-      "firstSeen": "2026-11-18T02:51:27+00:00",
-      "lastSeen": "2026-11-28T04:56:41+00:00",
-      "stale": false,
-      "image": "//cdn.shopify.com/s/files/1/0261/9795/0486/files/722644_6e94c0e9-c092-4e8e-97ee-d2b8167bfefc.jpg?v=1794281062",
-      "eligible": false,
-      "belowThreshold": false,
-      "previousPrice": 44.0,
-      "minPrice": 44.0,
-      "changed": false,
-      "dropAmount": null,
-      "history": [
-        {
-          "checkedAt": "2026-11-18T02:51:27+00:00",
-          "price": 51.75,
-          "inStock": false
         },
         {
-          "checkedAt": "2026-11-18T11:30:24+00:00",
-          "price": 51.75,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-18T19:34:18+00:00",
-          "price": 51.75,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-19T01:27:24+00:00",
-          "price": 52.25,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-19T09:28:32+00:00",
-          "price": 52.25,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-19T18:38:44+00:00",
-          "price": 52.25,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-20T00:54:00+00:00",
-          "price": 52.25,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-20T08:27:43+00:00",
-          "price": 51.5,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-20T17:15:03+00:00",
-          "price": 51.5,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-20T23:19:38+00:00",
-          "price": 51.5,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-21T04:16:04+00:00",
-          "price": 50.75,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-21T12:58:34+00:00",
-          "price": 50.75,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-21T20:03:33+00:00",
-          "price": 50.75,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-22T00:17:42+00:00",
-          "price": 50.75,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-22T07:25:12+00:00",
-          "price": 50.75,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-22T15:39:18+00:00",
-          "price": 49.25,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-22T21:14:48+00:00",
-          "price": 49.25,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-23T01:57:27+00:00",
-          "price": 49.25,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-23T10:40:25+00:00",
-          "price": 49.0,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-23T22:13:45+00:00",
-          "price": 49.0,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-24T06:21:39+00:00",
-          "price": 48.0,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-24T18:15:48+00:00",
-          "price": 48.0,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-25T02:45:28+00:00",
-          "price": 48.0,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-25T12:42:25+00:00",
-          "price": 48.0,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-25T21:58:44+00:00",
-          "price": 48.0,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-26T04:06:30+00:00",
-          "price": 47.25,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-26T13:48:26+00:00",
-          "price": 47.25,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-26T22:56:15+00:00",
-          "price": 47.25,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-27T04:57:04+00:00",
-          "price": 47.25,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-27T14:57:11+00:00",
-          "price": 44.0,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-27T23:24:14+00:00",
-          "price": 44.0,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-28T04:56:41+00:00",
-          "price": 44.0,
+          "checkedAt": "2026-11-28T14:06:58+00:00",
+          "price": 45.98,
           "inStock": false
         }
       ]
@@ -2213,7 +2262,7 @@
       "price": 49.0,
       "inStock": false,
       "firstSeen": "2026-11-14T12:58:06+00:00",
-      "lastSeen": "2026-11-28T04:56:41+00:00",
+      "lastSeen": "2026-11-28T14:06:58+00:00",
       "stale": false,
       "image": "//cdn.shopify.com/s/files/1/1704/1809/files/722644_in_1000x1000_b3ad6135-ce0d-49f7-be32-3942899747b0.jpg?v=1794334349",
       "eligible": false,
@@ -2457,198 +2506,10 @@
           "checkedAt": "2026-11-28T04:56:41+00:00",
           "price": 49.0,
           "inStock": false
-        }
-      ]
-    },
-    {
-      "id": "303d133b04e52eeeb8be",
-      "storeId": "deck-out-gaming",
-      "title": "Nico Robin (010) (Alternate Art) (EB05-010) [Extra Booster: One Piece Heroines Edition Vol. 2] Foil",
-      "variant": "Near Mint",
-      "condition": "Near Mint",
-      "url": "https://deckoutgaming.ca/products/nico-robin-010-alternate-art-eb05-010-extra-booster-one-piece-heroines-edition-vol-2-foil?variant=56883025215860",
-      "currency": "CAD",
-      "price": 49.19,
-      "inStock": false,
-      "firstSeen": "2026-11-17T11:43:28+00:00",
-      "lastSeen": "2026-11-28T04:56:41+00:00",
-      "stale": false,
-      "image": "//cdn.shopify.com/s/files/1/0320/2059/4827/files/722644.jpg?v=1794852850",
-      "eligible": false,
-      "belowThreshold": false,
-      "previousPrice": 49.19,
-      "minPrice": 49.19,
-      "changed": false,
-      "dropAmount": null,
-      "history": [
-        {
-          "checkedAt": "2026-11-17T11:43:28+00:00",
-          "price": 59.29,
-          "inStock": false
         },
         {
-          "checkedAt": "2026-11-17T20:49:14+00:00",
-          "price": 59.29,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-18T02:51:27+00:00",
-          "price": 57.79,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-18T11:30:24+00:00",
-          "price": 57.79,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-18T19:34:18+00:00",
-          "price": 57.79,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-19T01:27:24+00:00",
-          "price": 57.79,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-19T09:28:32+00:00",
-          "price": 58.59,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-19T18:38:44+00:00",
-          "price": 58.59,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-20T00:54:00+00:00",
-          "price": 58.59,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-20T08:27:43+00:00",
-          "price": 57.59,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-20T17:15:03+00:00",
-          "price": 57.59,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-20T23:19:38+00:00",
-          "price": 57.59,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-21T04:16:04+00:00",
-          "price": 56.79,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-21T12:58:34+00:00",
-          "price": 56.79,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-21T20:03:33+00:00",
-          "price": 56.79,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-22T00:17:42+00:00",
-          "price": 56.79,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-22T07:25:12+00:00",
-          "price": 54.99,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-22T15:39:18+00:00",
-          "price": 54.99,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-22T21:14:48+00:00",
-          "price": 54.99,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-23T01:57:27+00:00",
-          "price": 54.69,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-23T10:40:25+00:00",
-          "price": 54.69,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-23T22:13:45+00:00",
-          "price": 54.69,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-24T06:21:39+00:00",
-          "price": 54.69,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-24T18:15:48+00:00",
-          "price": 53.69,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-25T02:45:28+00:00",
-          "price": 53.69,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-25T12:42:25+00:00",
-          "price": 53.69,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-25T21:58:44+00:00",
-          "price": 53.69,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-26T04:06:30+00:00",
-          "price": 52.89,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-26T13:48:26+00:00",
-          "price": 52.89,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-26T22:56:15+00:00",
-          "price": 52.89,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-27T04:57:04+00:00",
-          "price": 49.19,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-27T14:57:11+00:00",
-          "price": 49.19,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-27T23:24:14+00:00",
-          "price": 49.19,
-          "inStock": false
-        },
-        {
-          "checkedAt": "2026-11-28T04:56:41+00:00",
-          "price": 49.19,
+          "checkedAt": "2026-11-28T14:06:58+00:00",
+          "price": 49.0,
           "inStock": false
         }
       ]
@@ -2661,17 +2522,17 @@
       "condition": "Near Mint",
       "url": "https://enterthebattlefield.ca/products/nico-robin-010-alternate-art-eb05-010-extra-booster-one-piece-heroines-edition-vol-2-foil?variant=48123606728875",
       "currency": "CAD",
-      "price": 50.0,
+      "price": 53.5,
       "inStock": false,
       "firstSeen": "2026-11-14T13:01:20+00:00",
-      "lastSeen": "2026-11-28T04:56:41+00:00",
+      "lastSeen": "2026-11-28T14:06:58+00:00",
       "stale": false,
       "image": "//cdn.shopify.com/s/files/1/0496/0098/7297/files/722644_2f837d62-ca7d-4ee1-8029-b2f29584e61d.jpg?v=1793846009",
       "eligible": false,
       "belowThreshold": false,
       "previousPrice": 50.0,
       "minPrice": 50.0,
-      "changed": false,
+      "changed": true,
       "dropAmount": null,
       "history": [
         {
@@ -2902,6 +2763,209 @@
         {
           "checkedAt": "2026-11-28T04:56:41+00:00",
           "price": 50.0,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-28T14:06:58+00:00",
+          "price": 53.5,
+          "inStock": false
+        }
+      ]
+    },
+    {
+      "id": "303d133b04e52eeeb8be",
+      "storeId": "deck-out-gaming",
+      "title": "Nico Robin (010) (Alternate Art) (EB05-010) [Extra Booster: One Piece Heroines Edition Vol. 2] Foil",
+      "variant": "Near Mint",
+      "condition": "Near Mint",
+      "url": "https://deckoutgaming.ca/products/nico-robin-010-alternate-art-eb05-010-extra-booster-one-piece-heroines-edition-vol-2-foil?variant=56883025215860",
+      "currency": "CAD",
+      "price": 54.09,
+      "inStock": false,
+      "firstSeen": "2026-11-17T11:43:28+00:00",
+      "lastSeen": "2026-11-28T14:06:58+00:00",
+      "stale": false,
+      "image": "//cdn.shopify.com/s/files/1/0320/2059/4827/files/722644.jpg?v=1794852850",
+      "eligible": false,
+      "belowThreshold": false,
+      "previousPrice": 49.19,
+      "minPrice": 49.19,
+      "changed": true,
+      "dropAmount": null,
+      "history": [
+        {
+          "checkedAt": "2026-11-17T11:43:28+00:00",
+          "price": 59.29,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-17T20:49:14+00:00",
+          "price": 59.29,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-18T02:51:27+00:00",
+          "price": 57.79,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-18T11:30:24+00:00",
+          "price": 57.79,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-18T19:34:18+00:00",
+          "price": 57.79,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-19T01:27:24+00:00",
+          "price": 57.79,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-19T09:28:32+00:00",
+          "price": 58.59,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-19T18:38:44+00:00",
+          "price": 58.59,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-20T00:54:00+00:00",
+          "price": 58.59,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-20T08:27:43+00:00",
+          "price": 57.59,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-20T17:15:03+00:00",
+          "price": 57.59,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-20T23:19:38+00:00",
+          "price": 57.59,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-21T04:16:04+00:00",
+          "price": 56.79,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-21T12:58:34+00:00",
+          "price": 56.79,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-21T20:03:33+00:00",
+          "price": 56.79,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-22T00:17:42+00:00",
+          "price": 56.79,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-22T07:25:12+00:00",
+          "price": 54.99,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-22T15:39:18+00:00",
+          "price": 54.99,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-22T21:14:48+00:00",
+          "price": 54.99,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-23T01:57:27+00:00",
+          "price": 54.69,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-23T10:40:25+00:00",
+          "price": 54.69,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-23T22:13:45+00:00",
+          "price": 54.69,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-24T06:21:39+00:00",
+          "price": 54.69,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-24T18:15:48+00:00",
+          "price": 53.69,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-25T02:45:28+00:00",
+          "price": 53.69,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-25T12:42:25+00:00",
+          "price": 53.69,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-25T21:58:44+00:00",
+          "price": 53.69,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-26T04:06:30+00:00",
+          "price": 52.89,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-26T13:48:26+00:00",
+          "price": 52.89,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-26T22:56:15+00:00",
+          "price": 52.89,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-27T04:57:04+00:00",
+          "price": 49.19,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-27T14:57:11+00:00",
+          "price": 49.19,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-27T23:24:14+00:00",
+          "price": 49.19,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-28T04:56:41+00:00",
+          "price": 49.19,
+          "inStock": false
+        },
+        {
+          "checkedAt": "2026-11-28T14:06:58+00:00",
+          "price": 54.09,
           "inStock": false
         }
       ]
